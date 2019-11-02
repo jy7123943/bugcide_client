@@ -19,20 +19,20 @@ const withAuth = WrappedComponent => props => {
       {isAuthenticated ? <Redirect to="/" /> : <Redirect to="/login" />}
       <Switch>
         <Route
-          path="/"
-          render={routerProps => (
-            <WrappedComponent
-              {...routerProps}
-              {...props}
-            />
-          )}
-        />
-        <Route
           exact path="/login"
           render={routerProps => (
             <Login
               {...routerProps}
               handleLogin={handleLogin}
+            />
+          )}
+        />
+        <Route
+          path="/"
+          render={routerProps => (
+            <WrappedComponent
+              {...routerProps}
+              {...props}
             />
           )}
         />
