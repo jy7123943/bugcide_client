@@ -1,1 +1,71 @@
 @import 'variables';
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500|Noto+Sans+KR:400,500&display=swap');
+
+body {
+  background: $bg-gray;
+  font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+}
+.btn-basic {
+  padding: 12px;
+  font-weight: 500;
+  color: #fff;
+  background: $blue;
+  border: none;
+  border-radius: 25px;
+}
+.gnb {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  height: 60px;
+  align-items: center;
+  background: $dark-gray;
+  .gnb-wrap {
+    display: flex;
+    width: 1260px;
+    margin: auto;
+    padding: 0 30px;
+    align-items: center;
+  }
+  .logo a {
+    color: $txt-gray;
+    font-size: 26px;
+  }
+  .btn-gnb {
+    padding: 6px 20px;
+    margin-left: auto;
+    font-size: 13px;
+    color: $txt-gray;
+    background: none;
+    border: 1px solid #999;
+  }
+}
+.app-container {
+  display: flex;
+  width: 1260px;
+  margin: auto;
+  padding: 30px;
+  padding-top: 90px;
+}
+.app-profile {
+  background: $blue;
+  width: 250px;
+  margin-right: 15px;
+  padding: 30px;
+  text-align: center;
+  .img-box {
+    background: #888;
+    width: 100%;
+    height: 160px;
+    border-radius: 20px;
+  }
+  .user-name {
+    color: #fff;
+  }
+}
+.app-content {
+  flex: 1;
+  background: #fff;
+}
