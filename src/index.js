@@ -6,7 +6,7 @@ import logger from 'redux-logger';
 import { HashRouter as Router } from 'react-router-dom';
 import rootReducer from './reducers';
 import App from './containers/App';
-import './index.css';
+import './normalize.v8.0.1.css';
 import * as serviceWorker from './serviceWorker';
 
 const store = createStore(rootReducer, applyMiddleware(logger));

@@ -1,0 +1,56 @@
+@import 'variables';
+
+.project-table {
+  width: 100%;
+  margin-top: 30px;
+  border-collapse: collapse;
+  thead {
+    background: $mid-gray;
+    color: #fff;
+    th {
+      padding: 12px 0;
+      font-weight: 400;
+    }
+    th:first-child {
+      width: 75%;
+    }
+  }
+  tbody {
+    .no-data {
+      text-align: center;
+      line-height: 1.5;
+      font-size: 18px;
+      color: $mid-gray;
+      td {
+        padding: 20px 0;
+      }
+    }
+    td {
+      padding: 10px 20px;
+      background: $bg-gray;
+      border-bottom: 2px solid #fff;
+    }
+    td:nth-child(2) {
+      text-align: center;
+      font-size: 15px;
+    }
+    tr:last-child td {
+      border-color: $bd-gray;
+    }
+    tr:not(.no-data):hover {
+      td {
+        background: rgba(99, 182, 113, 0.4);
+      }
+      a {
+        font-weight: 500;
+      }
+    }
+    a {
+      display: block;
+      width: 100%;
+      &:focus {
+        color: $dark-gray;
+      }
+    }
+  }
+}

@@ -12,6 +12,11 @@ body {
   background: $blue;
   border: none;
   border-radius: 25px;
+  &.sm {
+    padding: 7px 15px;
+    font-size: 15px;
+    font-weight: 400;
+  }
 }
 .gnb {
   position: fixed;
@@ -50,22 +55,37 @@ body {
   padding-top: 90px;
 }
 .app-profile {
-  background: $blue;
+  background: #fff;
   width: 250px;
+  height: 255px;
   margin-right: 15px;
   padding: 30px;
   text-align: center;
   .img-box {
-    background: #888;
+    background: $bg-gray;
     width: 100%;
     height: 160px;
     border-radius: 20px;
   }
   .user-name {
-    color: #fff;
+    margin-top: 15px;
+    color: $dark-gray;
   }
 }
 .app-content {
   flex: 1;
+  padding: 28px 30px;
   background: #fff;
+  .btn-basic {
+    margin-left: auto;
+  }
+}
+.content-header {
+  display: flex;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $bd-gray;
+}
+.content-title {
+  font-size: 24px;
+  font-weight: 500;
 }

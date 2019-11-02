@@ -13,7 +13,6 @@ const App = (props) => {
       <Header {...props} />
       <div className="app-profile">
         <div className="img-box">
-          UserImage
         </div>
         <div className="user-name">
           jy7123943
