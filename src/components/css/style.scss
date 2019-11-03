@@ -74,7 +74,7 @@ body {
 }
 .app-content {
   flex: 1;
-  padding: 28px 30px;
+  padding: 28px 30px 50px;
   background: #fff;
   .btn-basic {
     margin-left: auto;
@@ -88,4 +88,87 @@ body {
 .content-title {
   font-size: 24px;
   font-weight: 500;
+}
+.loading-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #120730;
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  max-width: 600px;
+  min-height: 320px;
+  padding: 50px 50px 40px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  .btn-basic {
+    margin-top: auto;
+  }
+}
+.btn-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  color: $dark-gray;
+  border: none;
+  background: none;
+}
+.label-basic {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.label-info {
+  display: block;
+  padding: 8px 5px 0;
+  font-size: 14px;
+  color: #666;
+  &.txt-red {
+    color: $orange;
+  }
+  &.txt-red:before {
+    background: $orange;
+  }
+}
+.label-info:before {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 7px;
+  margin-bottom: 3px;
+  border-radius: 50%;
+  background: $green;
+}
+.input-basic {
+  width: 100%;
+  padding: 6px 20px;
+  font-size: 20px;
+  border: 1px solid $bd-gray;
 }

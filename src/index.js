@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import { HashRouter as Router } from 'react-router-dom';
 import rootReducer from './reducers';
-import App from './containers/App';
+import Container from './containers/Container';
 import './normalize.v8.0.1.css';
 import * as serviceWorker from './serviceWorker';
 
@@ -14,7 +14,7 @@ const store = createStore(rootReducer, applyMiddleware(logger));
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <Container.App />
     </Router>
   </Provider>
   , document.getElementById('root')

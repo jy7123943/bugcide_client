@@ -1,26 +1,46 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import withAuth from './helpers/withAuth';
 import Header from './Header';
-import ProjectList from './ProjectList';
+// import ProjectList from './ProjectList';
+import Container from '../containers/Container';
 import ProjectDetail from './ProjectDetail';
 import './css/style.scss';
+import loadingImg from './img/loading.gif';
 
 const App = (props) => {
   console.log('App page props: ', props);
   const {
     jwtoken,
     onProjectListLoad,
-    projectList
+    projectList,
+    totalProjectsLength,
+    isLoading,
+    isError,
+    user,
+    isModalOpened,
+    handleModalOpen,
+    handleModalClose,
+    onProjectCreate
   } = props;
-
-  const { user } = projectList;
 
   useEffect(() => {
     if (jwtoken) {
       onProjectListLoad(jwtoken);
     }
   }, [ onProjectListLoad, jwtoken ]);
+
+  if (isLoading) {
+    return (
+      <div className="loading-box">
+        <img src={loadingImg} alt="user profile"></img>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return <div>Error</div>;
+  }
 
   return (
     <div className="app-container">
@@ -39,9 +59,8 @@ const App = (props) => {
         <Route
           exact path="/"
           render={routerProps => (
-            <ProjectList
+            <Container.ProjectList
               {...routerProps}
-              {...projectList}
             />
           )}
         />

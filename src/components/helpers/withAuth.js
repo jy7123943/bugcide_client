@@ -3,6 +3,7 @@ import Login from '../Login';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 const withAuth = WrappedComponent => props => {
+  console.log('withAuth loading', props.isLoading);
   const {
     isAuthenticated,
     handleLogin,

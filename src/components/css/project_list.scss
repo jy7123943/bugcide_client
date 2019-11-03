@@ -12,7 +12,7 @@
       font-weight: 400;
     }
     th:first-child {
-      width: 75%;
+      width: 70%;
     }
   }
   tbody {
@@ -26,7 +26,6 @@
       }
     }
     td {
-      padding: 10px 20px;
       background: $bg-gray;
       border-bottom: 2px solid #fff;
     }
@@ -48,6 +47,8 @@
     a {
       display: block;
       width: 100%;
+      padding: 10px 30px;
+      color: $dark-gray;
       &:focus {
         color: $dark-gray;
       }
