@@ -6,10 +6,14 @@ import * as actions from '../actions/index';
 import * as api from '../utils/api';
 
 const mapStateToProps = state => {
-  const { authReducer } = state;
+  const {
+    authReducer,
+    listReducer
+  } = state;
 
   return {
-    ...authReducer
+    ...authReducer,
+    projectList: { ...listReducer }
   };
 };
 
@@ -27,10 +31,10 @@ const mapDispatchToProps = dispatch => {
   firebase.initializeApp(firebaseConfig);
 
   return {
-    onMainLoad: () => {
+    handleAutoLogin: () => {
       const jwtoken = window.localStorage.getItem('bugcideToken');
 
-      jwtoken ? dispatch(actions.loginUser(jwtoken)) : dispatch(actions.logoutUser())
+      jwtoken ? dispatch(actions.loginUser(jwtoken)) : dispatch(actions.logoutUser());
     },
     handleLogin: async () => {
       try {
@@ -67,6 +71,25 @@ const mapDispatchToProps = dispatch => {
       } catch (err) {
         console.log(err);
         alert('Logout failed. Please try again!');
+      }
+    },
+    onProjectListLoad: async (token) => {
+      try {
+        dispatch(actions.getProjectListPending());
+        const response = await api.getProjectListApi(token);
+
+        if (response.result === 'unauthorized') {
+          return dispatch(actions.logoutUser());
+        }
+
+        if (response.result !== 'ok') {
+          return dispatch(actions.getProjectListFailure());
+        }
+
+        dispatch(actions.getProjectListSuccess(response));
+      } catch (err) {
+        console.log(err);
+        dispatch(actions.getProjectListFailure());
       }
     }
   };

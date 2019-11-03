@@ -3,16 +3,15 @@ import Login from '../Login';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 const withAuth = WrappedComponent => props => {
-  console.log('withAuth props: ', props);
   const {
     isAuthenticated,
     handleLogin,
-    onMainLoad
+    handleAutoLogin
   } = props;
 
   useEffect(() => {
-    onMainLoad();
-  }, [ onMainLoad ]);
+    handleAutoLogin();
+  }, [ handleAutoLogin ]);
 
   return (
     <>

@@ -5,6 +5,12 @@ import './css/style.scss';
 import './css/project_list.scss';
 
 const ProjectList = (props) => {
+  const {
+    isLoading,
+    isError,
+    projectList,
+    totalProjectsLength
+  } = props;
   console.log('ProjectList page props: ', props);
   return (
     <div className="app-content">

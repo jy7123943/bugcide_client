@@ -4,7 +4,7 @@ import React from 'react';
 import './css/style.scss';
 
 const ProjectDetail = (props) => {
-  console.log('ProjectDetail page props: ', props);
+  // console.log('ProjectDetail page props: ', props);
   return (
     <div className="app-content">
       <h2>My Projects</h2>
