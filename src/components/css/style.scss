@@ -188,6 +188,7 @@ body {
     &.disabled {
       color: $mid-gray;
       background: $bg-gray;
+      cursor: default;
     }
   }
 }

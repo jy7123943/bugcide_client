@@ -32,15 +32,9 @@ const listReducer = (state = listInitState, action) => {
         isError: true
       };
     case (types.POST_NEW_PROJECT_SUCCESS):
-      // const copiedProject = state.projectList.slice();
-      // copiedProject.unshift(action.newProject);
-      // const newProject = copiedProject.slice(0, 10);
-
       return {
         ...state,
-        // projectList: newProject,
         listCreateFailMessage: null,
-        // totalProjectsLength: ++state.totalProjectsLength,
         currentPageNo: 0
       };
     case (types.POST_NEW_PROJECT_FAILURE):
