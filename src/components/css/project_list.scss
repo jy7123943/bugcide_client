@@ -35,14 +35,17 @@
       font-size: 15px;
     }
     tr:last-child td {
-      border-color: $bd-gray;
+      border-bottom: 1px solid $bd-gray;
     }
     tr:nth-child(2n) td {
       background: $bg-gray;
     }
     tr:not(.no-data):hover {
       td {
-        background: #eaedfc;
+        background: $hover;
+      }
+      &:hover td {
+        transition: 0.2s;
       }
     }
     a {

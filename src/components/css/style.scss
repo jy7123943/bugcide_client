@@ -185,6 +185,9 @@ body {
     &:last-child {
       margin-left: 10px;
     }
+    &:hover {
+      background: $hover;
+    }
     &.disabled {
       color: $mid-gray;
       background: $bg-gray;
