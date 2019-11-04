@@ -8,9 +8,10 @@ export const logoutUser = () => ({
   type: types.LOGOUT_USER
 });
 
-export const getProjectListSuccess = (data) => ({
+export const getProjectListSuccess = (data, page) => ({
   type: types.GET_PROJECT_LIST_SUCCESS,
-  ...data
+  ...data,
+  page
 });
 export const getProjectListFailure = () => ({
   type: types.GET_PROJECT_LIST_FAILURE

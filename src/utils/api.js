@@ -10,7 +10,7 @@ export const userLoginApi = userInfo => {
     .catch(err => err.response.data);
 };
 
-export const getProjectListApi = (token, page = 0) => {
+export const getProjectListApi = (token, page) => {
   return axios({
     method: 'GET',
     url: `${process.env.REACT_APP_SERVER_URL}/project?page=${page}`,

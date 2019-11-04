@@ -5,14 +5,15 @@
   margin-top: 30px;
   border-collapse: collapse;
   thead {
-    background: $mid-gray;
-    color: #fff;
+    background: $chart-gray;
     th {
-      padding: 12px 0;
+      padding: 20px 0 20px;
       font-weight: 400;
+      color: #fff;
     }
     th:first-child {
       width: 70%;
+      font-weight: 500;
     }
   }
   tbody {
@@ -26,8 +27,8 @@
       }
     }
     td {
-      background: $bg-gray;
-      border-bottom: 2px solid #fff;
+      padding: 5px 0 5px;
+      background: #fff;
     }
     td:nth-child(2) {
       text-align: center;
@@ -36,12 +37,12 @@
     tr:last-child td {
       border-color: $bd-gray;
     }
+    tr:nth-child(2n) td {
+      background: $bg-gray;
+    }
     tr:not(.no-data):hover {
       td {
-        background: rgba(99, 182, 113, 0.4);
-      }
-      a {
-        font-weight: 500;
+        background: #eaedfc;
       }
     }
     a {

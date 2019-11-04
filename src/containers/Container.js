@@ -18,6 +18,25 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
+const handleProjectLoad = async (dispatch, token, page) => {
+  try {
+    const response = await api.getProjectListApi(token, page);
+
+    if (response.result === 'unauthorized') {
+      return dispatch(actions.logoutUser());
+    }
+
+    if (response.result !== 'ok') {
+      return dispatch(actions.getProjectListFailure());
+    }
+
+    dispatch(actions.getProjectListSuccess(response, page));
+  } catch (err) {
+    console.log(err);
+    dispatch(actions.getProjectListFailure());
+  }
+};
+
 const mapStateToProps = state => {
   return {
     ...state.authReducer,
@@ -75,23 +94,8 @@ const mapDispatchToProps = dispatch => ({
       alert('Logout failed. Please try again!');
     }
   },
-  onProjectListLoad: async (token) => {
-    try {
-      const response = await api.getProjectListApi(token);
-
-      if (response.result === 'unauthorized') {
-        return dispatch(actions.logoutUser());
-      }
-
-      if (response.result !== 'ok') {
-        return dispatch(actions.getProjectListFailure());
-      }
-
-      dispatch(actions.getProjectListSuccess(response));
-    } catch (err) {
-      console.log(err);
-      dispatch(actions.getProjectListFailure());
-    }
+  onProjectListLoad: async (token, page = 0) => {
+    handleProjectLoad(dispatch, token, page);
   },
   onProjectCreate: async (token, newProject) => {
     try {
@@ -107,6 +111,8 @@ const mapDispatchToProps = dispatch => ({
 
       dispatch(actions.postNewProjectSuccess(response.newProject));
       dispatch(actions.closeModal());
+
+      handleProjectLoad(dispatch, token, 0);
     } catch (err) {
       console.log(err);
       alert('Something went wrong. Please try later');
@@ -118,8 +124,3 @@ export default {
   App: connect(mapStateToProps, mapDispatchToProps)(App),
   ProjectList: connect(mapStateToProps, mapDispatchToProps)(ProjectList)
 }
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(App);

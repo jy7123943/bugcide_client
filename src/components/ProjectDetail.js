@@ -1,7 +1,4 @@
-
-
 import React from 'react';
-import './css/style.scss';
 
 const ProjectDetail = (props) => {
   // console.log('ProjectDetail page props: ', props);

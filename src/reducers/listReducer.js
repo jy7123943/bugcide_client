@@ -9,6 +9,7 @@ const listInitState = {
   },
   projectList: [],
   listCreateFailMessage: null,
+  currentPageNo: 0,
   totalProjectsLength: 0
 };
 
@@ -21,7 +22,8 @@ const listReducer = (state = listInitState, action) => {
         isError: false,
         user: { ...action.userInfo },
         projectList: action.projectList.slice(),
-        totalProjectsLength: action.totalProjectsLength
+        totalProjectsLength: action.totalProjectsLength,
+        currentPageNo: action.page
       };
     case (types.GET_PROJECT_LIST_FAILURE):
       return {
@@ -30,14 +32,16 @@ const listReducer = (state = listInitState, action) => {
         isError: true
       };
     case (types.POST_NEW_PROJECT_SUCCESS):
-      const copiedProject = state.projectList.slice();
-      copiedProject.unshift(action.newProject);
-      const newProject = copiedProject.slice(0, 10);
+      // const copiedProject = state.projectList.slice();
+      // copiedProject.unshift(action.newProject);
+      // const newProject = copiedProject.slice(0, 10);
 
       return {
         ...state,
-        projectList: newProject,
-        listCreateFailMessage: null
+        // projectList: newProject,
+        listCreateFailMessage: null,
+        // totalProjectsLength: ++state.totalProjectsLength,
+        currentPageNo: 0
       };
     case (types.POST_NEW_PROJECT_FAILURE):
       return {

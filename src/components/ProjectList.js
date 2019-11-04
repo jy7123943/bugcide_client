@@ -2,8 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import Modal from './Modal';
-import './css/style.scss';
+import Modal from './partials/Modal';
 import './css/project_list.scss';
 
 const ProjectList = (props) => {
@@ -11,16 +10,18 @@ const ProjectList = (props) => {
     jwtoken,
     projectList,
     totalProjectsLength,
+    currentPageNo,
     handleModalOpen,
     handleModalClose,
     isModalOpened,
     listCreateFailMessage,
-    onProjectCreate
+    onProjectCreate,
+    onProjectListLoad
   } = props;
 
   const [ projectName, setProjectName ] = useState('');
+  const PAGE_LIST_LIMIT = 10;
 
-  console.log('ProjectList page props: ', props);
   return (
     <>
       {isModalOpened && (
@@ -117,6 +118,36 @@ const ProjectList = (props) => {
             )}
           </tbody>
         </table>
+        {totalProjectsLength > PAGE_LIST_LIMIT && (
+          <div className="pagination">
+            <button
+              type="button"
+              className={currentPageNo === 0 ? 'btn-page disabled' : 'btn-page'}
+              onClick={() => {
+                if (currentPageNo === 0) {
+                  return;
+                }
+                onProjectListLoad(jwtoken, currentPageNo - 1);
+              }}
+            >
+              Prev
+            </button>
+            <button
+              type="button"
+              className={totalProjectsLength / PAGE_LIST_LIMIT <= currentPageNo + 1 ? 'btn-page disabled' : 'btn-page'}
+              onClick={() => {
+                const pageLimit = totalProjectsLength / PAGE_LIST_LIMIT;
+                if (pageLimit <= currentPageNo + 1) {
+                  return;
+                }
+
+                onProjectListLoad(jwtoken, currentPageNo + 1);
+              }}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </>
   );

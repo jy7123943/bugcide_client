@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import Login from '../Login';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import Login from '../Login';
 
 const withAuth = WrappedComponent => props => {
-  console.log('withAuth loading', props.isLoading);
   const {
     isAuthenticated,
     handleLogin,

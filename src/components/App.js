@@ -1,27 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import withAuth from './helpers/withAuth';
-import Header from './Header';
-// import ProjectList from './ProjectList';
+import Header from './partials/Header';
 import Container from '../containers/Container';
 import ProjectDetail from './ProjectDetail';
 import './css/style.scss';
 import loadingImg from './img/loading.gif';
 
 const App = (props) => {
-  console.log('App page props: ', props);
+  // console.log('App page props: ', props);
   const {
     jwtoken,
     onProjectListLoad,
-    projectList,
-    totalProjectsLength,
     isLoading,
     isError,
-    user,
-    isModalOpened,
-    handleModalOpen,
-    handleModalClose,
-    onProjectCreate
+    user
   } = props;
 
   useEffect(() => {
@@ -33,7 +26,7 @@ const App = (props) => {
   if (isLoading) {
     return (
       <div className="loading-box">
-        <img src={loadingImg} alt="user profile"></img>
+        <img src={loadingImg} alt="loading" />
       </div>
     );
   }

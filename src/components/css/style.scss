@@ -87,7 +87,6 @@ body {
 }
 .content-title {
   font-size: 24px;
-  font-weight: 500;
 }
 .loading-box {
   position: fixed;
@@ -171,4 +170,24 @@ body {
   padding: 6px 20px;
   font-size: 20px;
   border: 1px solid $bd-gray;
+}
+.pagination {
+  margin-top: 30px;
+  text-align: center;
+  .btn-page {
+    padding: 10px 20px;
+    color: #fff;
+    border: 1px solid $bd-gray;
+    color: $dark-gray;
+    background: none;
+    border-radius: 5px;
+    transition: 0.2s;
+    &:last-child {
+      margin-left: 10px;
+    }
+    &.disabled {
+      color: $mid-gray;
+      background: $bg-gray;
+    }
+  }
 }

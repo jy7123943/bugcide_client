@@ -3,7 +3,6 @@ import './css/style.scss';
 import './css/login.scss';
 
 const Login = (props) => {
-  console.log('login page props: ', props);
   return (
     <div className="login-container">
       <h1 className="logo">BUGCIDE.</h1>
