@@ -27,6 +27,7 @@ body {
   height: 60px;
   align-items: center;
   background: $dark-gray;
+  z-index: 20;
   .gnb-wrap {
     display: flex;
     width: 1260px;

@@ -1,6 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Loading from './partials/Loading';
 import Manual from './partials/Manual';
+import Accordion from './partials/Accordion';
+import moment from 'moment';
+import './css/project_detail.scss';
 
 const ProjectDetail = (props) => {
   console.log('ProjectDetail page props: ', props);
@@ -16,6 +20,9 @@ const ProjectDetail = (props) => {
     match: { params }
   } = props;
   console.log(project);
+
+  const [ istimelineTabOpened, setTimelineTab ] = useState(true);
+  const [ isGraphTabOpened, setGraphTab ] = useState(false);
 
   useEffect(() => {
     onProjectDetailLoad(jwtoken, params.token);
@@ -33,10 +40,22 @@ const ProjectDetail = (props) => {
             <div>
               <h2 className="content-title">
                 {project.name}
+                <span className="project-date">
+                  {moment(project.created_at).format('YYYY.MM.DD')}
+                </span>
               </h2>
-              <div>Project Token: {project.token}</div>
+              <p className="project-token">
+                Project Token: {project.token}
+              </p>
             </div>
-            <div>{project.created_at}</div>
+            <div className="align-right">
+              <Link
+                to="/"
+                className="btn-basic sm"
+              >
+                LIST
+              </Link>
+            </div>
           </>
         )}
       </div>
@@ -47,42 +66,61 @@ const ProjectDetail = (props) => {
       )}
       {errorList.length > 0 && (
         <div className="detail-content">
-          <ul>
-            {errorList.map(errorItem => (
-              <li key={errorItem._id}>
-                <div>
-                  <div>{errorItem.created_at}</div>
-                  <ul>
-                    <li>{errorItem.duplicate_count || 1}</li>
-                    <li>{errorItem.name}</li>
-                    <li>{errorItem.message}</li>
-                  </ul>
-                  <ul>
-                    <li>{errorItem.filename}</li>
-                    <li>{errorItem.lineno}</li>
-                    <li>{errorItem.colno}</li>
-                  </ul>
-                </div>
-                <div>
-                  {errorItem.stack}
-                </div>
-              </li>
-            ))}
+          <ul className="tab-header">
+            <li>
+              <button
+                type="button"
+                className={istimelineTabOpened ? "btn-tab active" : "btn-tab"}
+                onClick={() => {
+                  setTimelineTab(true);
+                  setGraphTab(false);
+                }}
+              >
+                Timeline
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                className={isGraphTabOpened ? "btn-tab active" : "btn-tab"}
+                onClick={() => {
+                  setTimelineTab(false);
+                  setGraphTab(true);
+                }}
+              >
+                Graph
+              </button>
+            </li>
           </ul>
-          <div className="pagination">
-            <button
-              type="button"
-              className="btn-page"
-            >
-              Prev
-            </button>
-            <button
-              type="button"
-              className="btn-page"
-            >
-              Next
-            </button>
-          </div>
+          {istimelineTabOpened && (
+            <div className="tab-content">
+              <ul className="timeline-list">
+                {errorList.map(errorItem => (
+                  <Accordion
+                    key={errorItem._id}
+                    errorItem={errorItem}
+                  />
+                ))}
+              </ul>
+              <div className="pagination">
+                <button
+                  type="button"
+                  className="btn-page"
+                >
+                  Prev
+                </button>
+                <button
+                  type="button"
+                  className="btn-page"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          )}
+          {isGraphTabOpened && (
+            <div className="tab-content">Graph</div>
+          )}
         </div>
       )}
     </div>

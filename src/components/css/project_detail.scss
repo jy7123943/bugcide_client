@@ -1,0 +1,132 @@
+@import 'variables';
+
+.project-token {
+  margin-top: 10px;
+  font-weight: 500;
+  color: $blue;
+}
+.project-date {
+  margin-left: 5px;
+  font-size: 16px;
+  font-weight: 400;
+  color: $chart-gray;
+  &:before {
+    content: '/ ';
+  }
+}
+.align-right {
+  display: flex;
+  margin-top: auto;
+  margin-left: auto;
+}
+.tab-header {
+  display: flex;
+  margin-top: 30px;
+  li {
+    flex: 1;
+  }
+  .btn-tab {
+    width: 100%;
+    padding: 15px 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid $bd-gray;
+    &.active {
+      font-weight: 500;
+      color: $green;
+      border: 1px solid $bd-gray;
+      border-top: 2px solid $green;
+      border-bottom: 0;
+    }
+    &:not(.active) {
+      background: $txt-gray;
+      color: $mid-gray
+    }
+  }
+}
+.tab-content {
+  padding: 30px 20px;
+  border: 1px solid $bd-gray;
+  border-top: none;
+}
+.accordion-parent {
+  display: flex;
+  .error-time {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding-left: 20px;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-top: -4px;
+      border-radius: 50%;
+      background: $orange;
+      z-index: 5;
+    }
+  }
+  .error-info {
+    flex: 6;
+    padding: 15px 0;
+  }
+  .error-title,
+  .error-source {
+    display: flex;
+    align-items: center;
+  }
+  .btn-more {
+    width: 50px;
+  }
+}
+.error-title {
+  font-weight: 500;
+  .badge {
+    padding: 2px 8px;
+    font-size: 14px;
+    color: $orange;
+    border-radius: 25px;
+    background: rgba(215, 106, 47, 0.3);
+    border: 2px solid rgba(215, 106, 47, 0.6);
+  }
+  .title {
+    margin: 0 10px 0 5px;
+    font-size: 20px;
+    color: $orange;
+  }
+}
+.error-source {
+  margin-top: 10px;
+  li {
+    color: $chart-gray;
+  }
+}
+.time-list {
+  .error-time:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 3px;
+    width: 2px;
+    height: 100%;
+    background: $orange;
+    opacity: 0.3;
+  }
+  &:first-child .error-time:after {
+    top: 50%;
+    height: 50%;
+  }
+  &:last-child .error-time:after {
+    top: 0;
+    height: 50%;
+  }
+  &:first-child:nth-last-child(1) .error-time:after {
+    display: none;
+  }
+}
