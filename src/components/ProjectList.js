@@ -140,7 +140,6 @@ const ProjectList = (props) => {
                 if (pageLimit <= currentPageNo + 1) {
                   return;
                 }
-
                 onProjectListLoad(jwtoken, currentPageNo + 1);
               }}
             >

@@ -19,7 +19,8 @@ const ProjectDetail = (props) => {
     totalErrorListLength,
     match: { params }
   } = props;
-  console.log(project);
+
+  const ERROR_LIST_LIMIT = 20;
 
   const [ istimelineTabOpened, setTimelineTab ] = useState(true);
   const [ isGraphTabOpened, setGraphTab ] = useState(false);
@@ -102,20 +103,35 @@ const ProjectDetail = (props) => {
                   />
                 ))}
               </ul>
-              <div className="pagination">
-                <button
-                  type="button"
-                  className="btn-page"
-                >
-                  Prev
-                </button>
-                <button
-                  type="button"
-                  className="btn-page"
-                >
-                  Next
-                </button>
-              </div>
+              {totalErrorListLength > ERROR_LIST_LIMIT && (
+                <div className="pagination">
+                  <button
+                    type="button"
+                    className={currentPageNo === 0 ? 'btn-page disabled' : 'btn-page'}
+                    onClick={() => {
+                      if (currentPageNo === 0) {
+                        return;
+                      }
+                      onProjectDetailLoad(jwtoken, params.token, currentPageNo - 1);
+                    }}
+                  >
+                    Prev
+                  </button>
+                  <button
+                    type="button"
+                    className={totalErrorListLength / ERROR_LIST_LIMIT <= currentPageNo + 1 ? 'btn-page disabled' : 'btn-page'}
+                    onClick={() => {
+                      const pageLimit = totalErrorListLength / ERROR_LIST_LIMIT;
+                      if (pageLimit <= currentPageNo + 1) {
+                        return;
+                      }
+                      onProjectDetailLoad(jwtoken, params.token, currentPageNo + 1);
+                    }}
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
             </div>
           )}
           {isGraphTabOpened && (
