@@ -3,6 +3,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import App from '../components/App';
 import ProjectList from '../components/ProjectList';
+import ProjectDetail from '../components/ProjectDetail';
 import * as actions from '../actions/index';
 import * as api from '../utils/api';
 
@@ -23,6 +24,7 @@ const handleProjectLoad = async (dispatch, token, page) => {
     const response = await api.getProjectListApi(token, page);
 
     if (response.result === 'unauthorized') {
+      window.localStorage.removeItem('bugcideToken');
       return dispatch(actions.logoutUser());
     }
 
@@ -102,6 +104,7 @@ const mapDispatchToProps = dispatch => ({
       const response = await api.postNewProjectApi(token, newProject);
 
       if (response.result === 'unauthorized') {
+        window.localStorage.removeItem('bugcideToken');
         return dispatch(actions.logoutUser());
       }
 
@@ -123,4 +126,4 @@ const mapDispatchToProps = dispatch => ({
 export default {
   App: connect(mapStateToProps, mapDispatchToProps)(App),
   ProjectList: connect(mapStateToProps, mapDispatchToProps)(ProjectList)
-}
+};

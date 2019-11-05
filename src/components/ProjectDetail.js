@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const ProjectDetail = (props) => {
-  // console.log('ProjectDetail page props: ', props);
+  console.log('ProjectDetail page props: ', props);
+  const {
+    jwtoken,
+    onProjectDetailLoad,
+    match: { params }
+  } = props;
+
+  useEffect(() => {
+    onProjectDetailLoad(jwtoken, params.token);
+  }, []);
+
   return (
     <div className="app-content">
       <h2>My Projects</h2>

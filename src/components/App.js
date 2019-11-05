@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import withAuth from './helpers/withAuth';
 import Header from './partials/Header';
 import Container from '../containers/Container';
-import ProjectDetail from './ProjectDetail';
+import ProjectDetail from '../containers/ProjectDetail';
 import './css/style.scss';
 import loadingImg from './img/loading.gif';
 

@@ -32,3 +32,15 @@ export const postNewProjectFailure = (message) => ({
   type: types.POST_NEW_PROJECT_FAILURE,
   message
 });
+
+export const getProjectDetailPending = () => ({
+  type: types.GET_PROJECT_DETAIL_PENDING
+});
+export const getProjectDetailSuccess = (data, page) => ({
+  type: types.GET_PROJECT_DETAIL_SUCCESS,
+  ...data,
+  page
+});
+export const getProjectDetailFailure = () => ({
+  type: types.GET_PROJECT_DETAIL_FAILURE
+});
