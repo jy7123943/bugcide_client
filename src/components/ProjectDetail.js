@@ -26,7 +26,7 @@ const ProjectDetail = (props) => {
 
   useEffect(() => {
     onProjectDetailLoad(jwtoken, params.token);
-  }, []);
+  }, [ jwtoken, onProjectDetailLoad, params ]);
 
   if (isLoading) {
     return <Loading />;

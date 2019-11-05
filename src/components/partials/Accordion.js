@@ -41,20 +41,28 @@ const Accordion = ({ errorItem }) => {
             <li className="message">{message}</li>
           </ul>
           <ul className="error-source">
-            <li>{filename}</li>
-            <li>{lineno}</li>
-            <li>{colno}</li>
+            <li className="lineno">
+              Line {lineno}:{colno}
+            </li>
+            <li className="filename">{filename}</li>
           </ul>
         </div>
-        <button className="btn-more"
-          onClick={handleAccordion}
-        >
-          +
-        </button>
+        <div className="btn-box">
+          <button
+            type="button"
+            className={isAccordionOpen ? "btn-more up" : "btn-more"}
+            onClick={handleAccordion}
+          >
+          </button>
+        </div>
       </div>
       {isAccordionOpen && (
         <div className="accordion-child">
-          {stack}
+          <div className="error-stack">
+            <pre>
+              {stack}
+            </pre>
+          </div>
         </div>
       )}
     </li>

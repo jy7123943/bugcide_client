@@ -1,4 +1,28 @@
 @import 'variables';
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};
+}
 
 .project-token {
   margin-top: 10px;
@@ -58,6 +82,11 @@
     justify-content: center;
     position: relative;
     padding-left: 20px;
+    color: $chart-gray;
+    font-size: 14px;
+    div:last-child {
+      margin-top: 2px;
+    }
     &:before {
       content: '';
       position: absolute;
@@ -73,7 +102,7 @@
     }
   }
   .error-info {
-    flex: 6;
+    flex: 7;
     padding: 15px 0;
   }
   .error-title,
@@ -82,14 +111,14 @@
     align-items: center;
   }
   .btn-more {
-    width: 50px;
+    width: 40px;
   }
 }
 .error-title {
   font-weight: 500;
   .badge {
-    padding: 2px 8px;
-    font-size: 14px;
+    padding: 1.5px 7px;
+    font-size: 12px;
     color: $orange;
     border-radius: 25px;
     background: rgba(215, 106, 47, 0.3);
@@ -103,8 +132,19 @@
 }
 .error-source {
   margin-top: 10px;
+  padding-right: 20px;
   li {
+    font-size: 14px;
     color: $chart-gray;
+  }
+  .filename {
+    margin-left: 5px;
+    word-break: break-all;
+  }
+  .lineno {
+    min-width: 65px;
+    font-weight: 500;
+    color: $blue;
   }
 }
 .time-list {
@@ -129,4 +169,53 @@
   &:first-child:nth-last-child(1) .error-time:after {
     display: none;
   }
+}
+.btn-box {
+  display: flex;
+  align-items: center;
+  .btn-more {
+    height: 40px;
+    background: #fff url('../img/icon_arrow_down.png') no-repeat center / 25px;
+    border: 1px solid $bd-gray;
+    &.up {
+      background: #fff url('../img/icon_arrow_up.png') no-repeat center / 25px;
+    }
+  }
+}
+.error-stack {
+  width: 833px;
+  background: $txt-gray;
+  padding: 20px 30px;
+  font-size: 14px;
+  overflow-x: auto;
+  color: $chart-gray;
+  pre {
+    margin: 0;
+    font-family: 'Inconsolata', 'consolas', monospace;
+  }
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $bd-gray;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: $txt-gray;
+  }
+}
+
+@include keyframes(slide-down) {
+  0% {
+    max-height: 0px;
+    overflow: hidden;
+  }
+  100% {
+    max-height: 1000px;
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+}
+.accordion-child {
+  @include animation('slide-down 0.8s ease-in-out');
 }
