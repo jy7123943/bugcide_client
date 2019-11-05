@@ -4,8 +4,8 @@ import withAuth from './helpers/withAuth';
 import Header from './partials/Header';
 import Container from '../containers/Container';
 import ProjectDetail from '../containers/ProjectDetail';
+import Loading from './partials/Loading';
 import './css/style.scss';
-import loadingImg from './img/loading.gif';
 
 const App = (props) => {
   // console.log('App page props: ', props);
@@ -24,11 +24,7 @@ const App = (props) => {
   }, [ onProjectListLoad, jwtoken ]);
 
   if (isLoading) {
-    return (
-      <div className="loading-box">
-        <img src={loadingImg} alt="loading" />
-      </div>
-    );
+    return <Loading />;
   }
 
   if (isError) {

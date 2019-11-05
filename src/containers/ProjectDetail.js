@@ -21,6 +21,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   onProjectDetailLoad: async (token, projectToken, page = 0) => {
     try {
+      dispatch(actions.getProjectDetailPending());
       const response = await api.getProjectDetailApi(token, projectToken, page);
 
       if (response.result === 'unauthorized') {
