@@ -15,6 +15,7 @@ const ProjectDetail = (props) => {
     errorList,
     project,
     currentPageNo,
+    isDescSorting,
     onProjectDetailLoad,
     totalErrorListLength,
     match: { params }
@@ -24,6 +25,7 @@ const ProjectDetail = (props) => {
 
   const [ istimelineTabOpened, setTimelineTab ] = useState(true);
   const [ isGraphTabOpened, setGraphTab ] = useState(false);
+  const [ isSorting, setSorting ] = useState(false);
 
   useEffect(() => {
     onProjectDetailLoad(jwtoken, params.token);
@@ -95,6 +97,20 @@ const ProjectDetail = (props) => {
           </ul>
           {istimelineTabOpened && (
             <div className="tab-content">
+              <div className="toggle-switch">
+                <input
+                  type="checkbox"
+                  id="sortingCheck"
+                  defaultChecked={isDescSorting}
+                  onChange={() => {
+                    const sort = isDescSorting ? 'asc' : 'desc';
+                    onProjectDetailLoad(jwtoken, params.token, 0, sort);
+                  }}
+                />
+                <label htmlFor="sortingCheck">
+                  <span className="toggle-track"></span>
+                </label>
+              </div>
               <ul className="timeline-list">
                 {errorList.map(errorItem => (
                   <Accordion
@@ -112,7 +128,8 @@ const ProjectDetail = (props) => {
                       if (currentPageNo === 0) {
                         return;
                       }
-                      onProjectDetailLoad(jwtoken, params.token, currentPageNo - 1);
+                      const sort = isDescSorting ? 'desc' : 'asc';
+                      onProjectDetailLoad(jwtoken, params.token, currentPageNo - 1, sort);
                     }}
                   >
                     Prev
@@ -125,7 +142,8 @@ const ProjectDetail = (props) => {
                       if (pageLimit <= currentPageNo + 1) {
                         return;
                       }
-                      onProjectDetailLoad(jwtoken, params.token, currentPageNo + 1);
+                      const sort = isDescSorting ? 'desc' : 'asc';
+                      onProjectDetailLoad(jwtoken, params.token, currentPageNo + 1, sort);
                     }}
                   >
                     Next

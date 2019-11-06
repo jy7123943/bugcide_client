@@ -5,6 +5,7 @@ const detailInitState = {
   isError: false,
   project: null,
   errorList: [],
+  isDescSorting: false,
   currentPageNo: 0,
   totalErrorListLength: 0
 };
@@ -23,6 +24,7 @@ const detailReducer = (state = detailInitState, action) => {
         isError: false,
         project: action.targetProject,
         errorList: action.errorList || [],
+        isDescSorting: action.sort === 'asc' ? false : true,
         currentPageNo: action.page,
         totalErrorListLength: action.totalErrorListLength
       };

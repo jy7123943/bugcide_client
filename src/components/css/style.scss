@@ -196,3 +196,55 @@ body {
     }
   }
 }
+.toggle-switch {
+  position: relative;
+  input[type=checkbox] {
+    position: absolute;
+    left: 15px;
+    opacity: 0;
+    z-index: -1;
+    &:checked + label .toggle-track:before,
+    &:checked + label .toggle-track:after {
+      right: 16px;
+    }
+    &:checked + label .toggle-track:after {
+      content: 'OLD';
+    }
+  }
+  label {
+    cursor: pointer;
+    .toggle-track {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+      border-radius: 10px;
+      border: 1px solid $bd-gray;
+      background: $bd-gray;
+    }
+  }
+  .toggle-track:before,
+  .toggle-track:after {
+    content: '';
+    display: inline-block;
+    width: 42px;
+    height: 32px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: right .2s ease-in;
+    background: $chart-gray;
+    border-radius: 10px;
+  }
+  .toggle-track:after {
+    content: 'NEW';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    background: none;
+    z-index: 2;
+    color: $txt-gray;
+  }
+}

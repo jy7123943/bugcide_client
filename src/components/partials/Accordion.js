@@ -44,7 +44,9 @@ const Accordion = ({ errorItem }) => {
             <li className="lineno">
               Line {lineno}:{colno}
             </li>
-            <li className="filename">{filename}</li>
+            <li className="filename">
+              {!!filename && filename.replace('?', '')}
+            </li>
           </ul>
         </div>
         <div className="btn-box">

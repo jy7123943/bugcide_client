@@ -36,10 +36,11 @@ export const postNewProjectFailure = (message) => ({
 export const getProjectDetailPending = () => ({
   type: types.GET_PROJECT_DETAIL_PENDING
 });
-export const getProjectDetailSuccess = (data, page) => ({
+export const getProjectDetailSuccess = (data, page, sort) => ({
   type: types.GET_PROJECT_DETAIL_SUCCESS,
   ...data,
-  page
+  page,
+  sort
 });
 export const getProjectDetailFailure = () => ({
   type: types.GET_PROJECT_DETAIL_FAILURE

@@ -35,10 +35,10 @@ export const postNewProjectApi = (token, newProject) => {
     .catch(err => err.response.data);
 };
 
-export const getProjectDetailApi = (token, projectToken, page = 0) => {
+export const getProjectDetailApi = (token, projectToken, page = 0, sort='asc') => {
   return axios({
     method: 'GET',
-    url: `${process.env.REACT_APP_SERVER_URL}/project/${projectToken}?page=${page}`,
+    url: `${process.env.REACT_APP_SERVER_URL}/project/${projectToken}?page=${page}&sort=${sort}`,
     headers: {
       'Authorization': `Bearer ${token}`
     }

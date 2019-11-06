@@ -19,10 +19,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  onProjectDetailLoad: async (token, projectToken, page = 0) => {
+  onProjectDetailLoad: async (token, projectToken, page = 0, sort = 'asc') => {
     try {
       dispatch(actions.getProjectDetailPending());
-      const response = await api.getProjectDetailApi(token, projectToken, page);
+      const response = await api.getProjectDetailApi(token, projectToken, page, sort);
 
       if (response.result === 'unauthorized') {
         window.localStorage.removeItem('bugcideToken');
@@ -30,14 +30,14 @@ const mapDispatchToProps = dispatch => ({
       }
 
       if (response.result === 'Project not started') {
-        return dispatch(actions.getProjectDetailSuccess(response, page));
+        return dispatch(actions.getProjectDetailSuccess(response, page, sort));
       }
 
       if (response.result !== 'ok') {
         return dispatch(actions.getProjectDetailFailure());
       }
 
-      dispatch(actions.getProjectDetailSuccess(response, page));
+      dispatch(actions.getProjectDetailSuccess(response, page, sort));
     } catch (err) {
       console.log(err);
       dispatch(actions.getProjectDetailFailure());
