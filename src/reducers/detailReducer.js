@@ -34,6 +34,11 @@ const detailReducer = (state = detailInitState, action) => {
         isLoading: false,
         isError: true
       };
+    case (types.DELETE_PROJECT_PENDING):
+      return {
+        ...state,
+        isLoading: true
+      };
     default:
       return state;
   }

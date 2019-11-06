@@ -6,6 +6,9 @@ body {
   font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
 }
 .btn-basic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 12px;
   font-weight: 500;
   color: #fff;
@@ -16,6 +19,16 @@ body {
     padding: 7px 15px;
     font-size: 15px;
     font-weight: 400;
+  }
+  &.btn-delete {
+    margin-right: 5px;
+    color: $blue;
+    font-weight: 500;
+    border: 2px solid $blue;
+    background: #fff;
+  }
+  &.btn-orange {
+    background: $orange;
   }
 }
 .gnb {
@@ -77,14 +90,14 @@ body {
   flex: 1;
   padding: 28px 30px 50px;
   background: #fff;
-  .btn-basic {
-    margin-left: auto;
-  }
 }
 .content-header {
   display: flex;
   padding-bottom: 10px;
   border-bottom: 1px solid $bd-gray;
+  .btn-basic {
+    margin-left: auto;
+  }
 }
 .content-title {
   font-size: 24px;
@@ -110,7 +123,7 @@ body {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 10;
+  z-index: 30;
 }
 .modal-content {
   position: absolute;

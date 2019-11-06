@@ -7,14 +7,12 @@ const mapStateToProps = state => {
   console.log('Detail state: ', state);
   const {
     authReducer,
-    detailReducer,
-    modalReducer
+    detailReducer
   } = state;
 
   return {
     jwtoken: authReducer.jwtoken,
-    ...detailReducer,
-    modalReducer
+    ...detailReducer
   };
 };
 
@@ -41,6 +39,25 @@ const mapDispatchToProps = dispatch => ({
     } catch (err) {
       console.log(err);
       dispatch(actions.getProjectDetailFailure());
+    }
+  },
+  onProjectDelete: async (token, projectToken) => {
+    try {
+      dispatch(actions.deleteProjectPending());
+
+      const response = await api.deleteProjectApi(token, projectToken);
+      if (response.result === 'unauthorized') {
+        window.localStorage.removeItem('bugcideToken');
+        return dispatch(actions.logoutUser());
+      }
+
+      if (response.result !== 'ok') {
+        alert('Failed to delete Project. Please try again later');
+      }
+      window.location.replace('/');
+    } catch (err) {
+      console.log(err);
+      alert('Failed to delete Project. Please try again later');
     }
   }
 });

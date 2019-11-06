@@ -46,3 +46,15 @@ export const getProjectDetailApi = (token, projectToken, page = 0, sort='asc') =
     .then(res => res.data)
     .catch(err => err.response.data);
 };
+
+export const deleteProjectApi = (token, projectToken) => {
+  return axios({
+    method: 'DELETE',
+    url: `${process.env.REACT_APP_SERVER_URL}/project/${projectToken}`,
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+    .then(res => res.data)
+    .catch(err => err.response.data);
+};

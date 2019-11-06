@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Loading from './partials/Loading';
 import Manual from './partials/Manual';
 import Accordion from './partials/Accordion';
+import Modal from './partials/Modal';
 import moment from 'moment';
 import './css/project_detail.scss';
 
@@ -18,6 +19,7 @@ const ProjectDetail = (props) => {
     isDescSorting,
     onProjectDetailLoad,
     totalErrorListLength,
+    onProjectDelete,
     match: { params }
   } = props;
 
@@ -25,7 +27,9 @@ const ProjectDetail = (props) => {
 
   const [ istimelineTabOpened, setTimelineTab ] = useState(true);
   const [ isGraphTabOpened, setGraphTab ] = useState(false);
-  const [ isSorting, setSorting ] = useState(false);
+  const [ isModalOpened, setModal ] = useState(false);
+  const [ projectName, setProjectName ] = useState('');
+  const [ isProjectNameWrong, matchProjectName ] = useState(false);
 
   useEffect(() => {
     onProjectDetailLoad(jwtoken, params.token);
@@ -37,6 +41,51 @@ const ProjectDetail = (props) => {
 
   return (
     <div className="app-content">
+      {isModalOpened && (
+        <Modal
+          onModalClose={() => {
+            setModal(false);
+          }}
+        >
+          <label>
+            <span className="label-basic">
+              Project Name
+            </span>
+            <input
+              type="text"
+              value={projectName}
+              onChange={(e) => {
+                setProjectName(e.target.value);
+              }}
+              className="input-basic"
+            />
+            {!!isProjectNameWrong && (
+              <span className="label-info txt-red">
+                Project Name not matched!
+              </span>
+            )}
+            <span className="label-info">
+              Please type in the name of the project to confirm.
+            </span>
+            <span className="label-info">
+              Once you delete a project, there is no going back. Please be certain.
+            </span>
+          </label>
+          <button
+            type="button"
+            className="btn-basic btn-orange"
+            onClick={() => {
+              if (projectName !== project.name) {
+                matchProjectName(true);
+                return;
+              }
+              onProjectDelete(jwtoken, params.token);
+            }}
+          >
+            Are you absolutely sure?
+          </button>
+        </Modal>
+      )}
       <div className="content-header">
         {project && (
           <>
@@ -52,6 +101,15 @@ const ProjectDetail = (props) => {
               </p>
             </div>
             <div className="align-right">
+              <button
+                type="button"
+                className="btn-basic btn-delete sm"
+                onClick={() => {
+                  setModal(true);
+                }}
+              >
+                DELETE
+              </button>
               <Link
                 to="/"
                 className="btn-basic sm"
