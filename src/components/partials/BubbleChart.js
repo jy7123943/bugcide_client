@@ -17,11 +17,8 @@ class BubbleChart extends Component {
     this.renderBubbles = this.renderBubbles.bind(this);
   }
 
-  componentWillMount() {
-    this.mounted = true;
-  }
-
   componentDidMount() {
+    this.mounted = true;
     if (this.props.data.length > 0) {
       this.minValue = 0.95 * d3.min(this.props.data, item => item.count);
       this.maxValue = 1.05 * d3.max(this.props.data, item => item.count);
@@ -37,7 +34,7 @@ class BubbleChart extends Component {
   radiusScale = value => {
     const fx = d3
       .scaleSqrt()
-      .range([ 20, 100 ])
+      .range([ 15, 120 ])
       .domain([ this.minValue, this.maxValue ]);
 
     return fx(value);
@@ -69,10 +66,10 @@ class BubbleChart extends Component {
       .scaleLinear()
       .domain([ minValue, maxValue ])
       .interpolate(d3.interpolateHcl)
-      .range(['#333', '#999']);
+      .range(['#64b671', '#d76a2f']);
 
     const texts = data.map((item, index) => {
-      const fontSize = this.radiusScale(item.count) / 3;
+      const radiusSize = this.radiusScale(item.count);
       const props = this.props;
 
       return (
@@ -81,20 +78,31 @@ class BubbleChart extends Component {
           transform={`translate(${props.width / 2 + item.x}, ${props.height / 2 + item.y})`}
         >
           <circle
-            r={this.radiusScale(item.count)}
+            r={radiusSize}
             fill={color(item.count)}
-            stroke={d3.rgb(color(item.count)).brighter(2)}
-            strokeWidth="2"
           />
-          <text
-            dy="6"
-            fill="#fff"
-            textAnchor="middle"
-            fontSize={`${fontSize}px`}
-            fontWeight="bold"
-          >
-            {item.title}
-          </text>
+          {radiusSize > 40 && (
+            <text
+              dy="6"
+              fill="#fff"
+              textAnchor="middle"
+              fontSize={'15px'}
+              fontWeight="bold"
+            >
+              {item.title}
+            </text>
+          )}
+          {radiusSize > 10 && radiusSize < 40 && (
+            <text
+              dy="6"
+              fill="#fff"
+              textAnchor="middle"
+              fontSize={'12px'}
+              fontWeight="bold"
+            >
+              {item.count}
+            </text>
+          )}
         </g>
       );
     });
@@ -103,14 +111,33 @@ class BubbleChart extends Component {
   }
 
   render() {
+    const color = d3
+      .scaleLinear()
+      .domain([ this.minValue, this.maxValue ])
+      .interpolate(d3.interpolateHcl)
+      .range(['#64b671', '#d76a2f']);
     if (!this.state.data.length) {
       return <div>Loading</div>;
     }
     return (
-      <div>
+      <div className="bubble-chart">
         <svg width={this.props.width} height={this.props.height}>
           {this.renderBubbles(this.state.data)}
         </svg>
+        <ul className="item-list">
+          {this.state.data.map((item, i) => (
+            <li key={i}>
+              <div
+                style={{ backgroundColor: color(item.count) }}
+                className="item-color"
+              >
+              </div>
+              <div className="item-title">
+                {`${item.title} ${item.count}`}
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }

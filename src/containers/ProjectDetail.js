@@ -10,9 +10,31 @@ const mapStateToProps = state => {
     detailReducer
   } = state;
 
+  const { statistics } = detailReducer;
+
+  let newErrorNameData;
+  let newErrorTimeData;
+  if (statistics && statistics.name) {
+    newErrorNameData = Object.keys(statistics.name).map(errorName => ({
+      title: errorName,
+      count: statistics.name[errorName]
+    }));
+    // const addZero = (num) => num > 9 ? num : '0' + num;
+    // `${addZero(index)}:00~${addZero(index + 1)}:00`
+    newErrorTimeData = statistics.time.map((errorCount, index) => ({
+      time: index,
+      count: errorCount
+    }));
+    console.log(newErrorTimeData);
+  }
+
   return {
     jwtoken: authReducer.jwtoken,
-    ...detailReducer
+    ...detailReducer,
+    statistics: {
+      name: newErrorNameData,
+      time: newErrorTimeData
+    }
   };
 };
 
