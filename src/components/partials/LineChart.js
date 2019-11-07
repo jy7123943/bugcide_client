@@ -45,7 +45,7 @@ class LineChart extends Component {
 
     const margin = 5;
     // const xFormat = d3.format('.2');
-    const h = height - 1 * margin, w = width - 1 * margin;
+    const h = height - 1 * margin;
     this.xTicks = x.ticks(data.length).map(d => (
       <g key={d} transform={`translate(${x(d) - 5}, ${h})`}>
         <text
@@ -60,8 +60,8 @@ class LineChart extends Component {
   }
 
   componentDidUpdate() {
-    let line = d3.selectAll('.line');
-    let totalLength = line.node().getTotalLength();
+    const line = d3.selectAll('.line');
+    const totalLength = line.node().getTotalLength();
 
     line
       .attr('stroke-dasharray', totalLength)
@@ -73,7 +73,7 @@ class LineChart extends Component {
       .attr('stroke-width', 0)
       .attr('stroke-dashoffset', 0);
 
-    let area = d3.selectAll('.area');
+    const area = d3.selectAll('.area');
     area
       .attr('transform', 'translate(0, 300)')
       .transition()
@@ -82,12 +82,16 @@ class LineChart extends Component {
       .attr('transform', 'translate(0, 0)');
   }
 
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
   render() {
     const { data } = this.state;
-    console.log('data: ',data);
     if (!this.mounted) {
-      return <div>Loading</div>;
+      return <div></div>;
     }
+
     return (
       <div className="line-chart">
         <svg width={this.props.width} height={this.props.height}>

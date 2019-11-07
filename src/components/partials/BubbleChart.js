@@ -62,7 +62,7 @@ class BubbleChart extends Component {
     const minValue = 0.95 * d3.min(data, item => item.count);
     const maxValue = 1.05 * d3.max(data, item => item.count);
 
-    const color = d3
+    this.color = d3
       .scaleLinear()
       .domain([ minValue, maxValue ])
       .interpolate(d3.interpolateHcl)
@@ -79,7 +79,7 @@ class BubbleChart extends Component {
         >
           <circle
             r={radiusSize}
-            fill={color(item.count)}
+            fill={this.color(item.count)}
           />
           {radiusSize > 40 && (
             <text
@@ -111,14 +111,10 @@ class BubbleChart extends Component {
   }
 
   render() {
-    const color = d3
-      .scaleLinear()
-      .domain([ this.minValue, this.maxValue ])
-      .interpolate(d3.interpolateHcl)
-      .range(['#64b671', '#d76a2f']);
-    if (!this.state.data.length) {
-      return <div>Loading</div>;
+    if (!this.mounted) {
+      return <div></div>;
     }
+
     return (
       <div className="bubble-chart">
         <svg width={this.props.width} height={this.props.height}>
@@ -128,7 +124,7 @@ class BubbleChart extends Component {
           {this.state.data.map((item, i) => (
             <li key={i}>
               <div
-                style={{ backgroundColor: color(item.count) }}
+                style={{ backgroundColor: this.color(item.count) }}
                 className="item-color"
               >
               </div>
