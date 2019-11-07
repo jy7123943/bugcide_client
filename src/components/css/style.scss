@@ -1,5 +1,5 @@
 @import 'variables';
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500|Inconsolata|Noto+Sans+KR:400,500&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Inconsolata|Noto+Sans+KR:400,500&display=swap');
 
 body {
   background: $bg-gray;
@@ -9,26 +9,28 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
+  padding: 16px 12px;
   font-weight: 500;
+  width: 300px;
   color: #fff;
-  background: $blue;
+  background: $red;
   border: none;
   border-radius: 25px;
+  &.block {
+    width: 100%;
+  }
   &.sm {
+    width: auto;
     padding: 7px 15px;
     font-size: 15px;
     font-weight: 400;
   }
   &.btn-delete {
     margin-right: 5px;
-    color: $blue;
+    color: $red;
     font-weight: 500;
-    border: 2px solid $blue;
-    background: #fff;
-  }
-  &.btn-orange {
-    background: $orange;
+    border: 2px solid $red;
+    background: none;
   }
 }
 .gnb {
@@ -37,9 +39,9 @@ body {
   left: 0;
   display: flex;
   width: 100%;
-  height: 60px;
+  height: 80px;
   align-items: center;
-  background: $dark-gray;
+  background: $dark-blue;
   z-index: 20;
   .gnb-wrap {
     display: flex;
@@ -49,16 +51,31 @@ body {
     align-items: center;
   }
   .logo a {
-    color: $txt-gray;
+    color: #fff;
     font-size: 26px;
   }
-  .btn-gnb {
-    padding: 6px 20px;
+  .user-info {
+    display: flex;
+    align-items: center;
     margin-left: auto;
+  }
+  .img-box {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+  .user-name {
+    margin-right: 50px;
+    color: #fff;
+    font-size: 14px;
+  }
+  .btn-gnb {
+    padding: 4px 20px 8px;
     font-size: 13px;
-    color: $txt-gray;
-    background: none;
-    border: 1px solid #999;
+    color: #fff;
+    background: $pink;
+    border: 1px solid $pink;
   }
 }
 .app-container {
@@ -66,30 +83,12 @@ body {
   width: 1260px;
   margin: auto;
   padding: 30px;
-  padding-top: 90px;
+  padding-top: 80px;
 }
-.app-profile {
-  background: #fff;
-  width: 250px;
-  height: 255px;
-  margin-right: 15px;
-  padding: 30px;
-  text-align: center;
-  .img-box {
-    background: $bg-gray;
-    width: 100%;
-    height: 160px;
-    border-radius: 20px;
-  }
-  .user-name {
-    margin-top: 15px;
-    color: $dark-gray;
-  }
-}
+
 .app-content {
   flex: 1;
-  padding: 28px 30px 50px;
-  background: #fff;
+  padding: 60px 0 50px;
 }
 .content-header {
   display: flex;
@@ -109,6 +108,7 @@ body {
   width: 100vw;
   height: 100vh;
   background: #120730;
+  z-index: 99;
   img {
     position: absolute;
     top: 50%;
@@ -147,7 +147,7 @@ body {
   top: 10px;
   right: 10px;
   font-size: 30px;
-  color: $dark-gray;
+  color: $dark-blue;
   border: none;
   background: none;
 }
@@ -161,12 +161,12 @@ body {
   display: block;
   padding: 8px 5px 0;
   font-size: 14px;
-  color: #666;
+  color: $dark-mint;
   &.txt-red {
-    color: $orange;
+    color: $red;
   }
   &.txt-red:before {
-    background: $orange;
+    background: $red;
   }
 }
 .label-info:before {
@@ -177,7 +177,7 @@ body {
   margin-right: 7px;
   margin-bottom: 3px;
   border-radius: 50%;
-  background: $green;
+  background: $mint01;
 }
 .input-basic {
   width: 100%;
@@ -190,21 +190,20 @@ body {
   text-align: center;
   .btn-page {
     padding: 10px 20px;
-    color: #fff;
-    border: 1px solid $bd-gray;
-    color: $dark-gray;
-    background: none;
+    border: 1px solid $dark-mint;
+    color: $dark-mint;
+    background: #fff;
     border-radius: 5px;
     transition: 0.2s;
     &:last-child {
       margin-left: 10px;
     }
-    &:hover {
-      background: $hover;
+    &:not(.disabled):hover {
+      background: $dark-mint;
+      color: #fff;
     }
     &.disabled {
-      color: $mid-gray;
-      background: $bg-gray;
+      background: $bg-disable;
       cursor: default;
     }
   }
@@ -246,7 +245,7 @@ body {
     top: 0;
     right: 0;
     transition: right .2s ease-in;
-    background: $chart-gray;
+    background: $chart-blue;
     border-radius: 10px;
   }
   .toggle-track:after {
@@ -258,6 +257,6 @@ body {
     font-weight: 500;
     background: none;
     z-index: 2;
-    color: $txt-gray;
+    color: $bg-gray;
   }
 }

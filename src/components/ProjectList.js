@@ -54,7 +54,7 @@ const ProjectList = (props) => {
           </label>
           <button
             type="button"
-            className="btn-basic"
+            className="btn-basic block"
             onClick={() => {
               if (!projectName.trim()) {
                 return;

@@ -2,44 +2,39 @@
 
 .login-container {
   display: flex;
-  width: 1000px;
-  height: 500px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
   .main-banner,
   .login-box {
     width: 50%;
   }
   .logo {
-    position: absolute;
-    top: -80px;
-    width: 100%;
-    text-align: center;
+    margin-bottom: 20px;
+    color: #fff;
   }
   .main-banner {
-    background: #fff url('../img/main_banner.png') no-repeat center / 90%;
+    background: $pink url('../img/main_banner.svg') no-repeat center / 130%;
   }
 }
 .login-box {
   display: flex;
-  padding: 0 50px;
+  padding: 0 80px;
   justify-content: center;
   flex-direction: column;
-  color: $txt-gray;
-  background: $dark-gray;
+  color: #fff;
+  background: $dark-blue;
   .title {
-    font-weight: 500;
+    font-weight: 700;
     line-height: 1.5;
-    font-size: 30px;
+    font-size: 80px;
     margin-bottom: 15px;
   }
   .desc {
+    margin-top: 20px;
     font-size: 15px;
-    line-height: 1.3;
+    line-height: 1.4;
   }
   .btn-basic {
-    margin-top: 80px;
+    margin-top: 100px;
   }
 }

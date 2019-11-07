@@ -10,13 +10,25 @@ const Header = (props) => {
             Bugcide.
           </Link>
         </h1>
-        <button
-          type="button"
-          className="btn-gnb"
-          onClick={props.handleLogout}
-        >
-          Logout
-        </button>
+        <ul className="user-info">
+          <li
+            className="img-box"
+            style={{ background: `url(${props.user.profileUrl}) no-repeat center / cover` }}
+          >
+          </li>
+          <li className="user-name">
+            {props.user.name}
+          </li>
+          <li>
+            <button
+              type="button"
+              className="btn-gnb"
+              onClick={props.handleLogout}
+            >
+              Logout
+            </button>
+          </li>
+        </ul>
       </div>
     </header>
   );

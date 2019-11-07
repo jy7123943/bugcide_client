@@ -34,16 +34,6 @@ const App = (props) => {
   return (
     <div className="app-container">
       <Header {...props} />
-      <div className="app-profile">
-        <div
-          className="img-box"
-          style={{ background: `url(${user.profileUrl}) no-repeat center / cover` }}
-        >
-        </div>
-        <div className="user-name">
-          {user.name}
-        </div>
-      </div>
       <Switch>
         <Route
           exact path="/"

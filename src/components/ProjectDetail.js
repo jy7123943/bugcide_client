@@ -76,7 +76,7 @@ const ProjectDetail = (props) => {
           </label>
           <button
             type="button"
-            className="btn-basic btn-orange"
+            className="btn-basic block"
             onClick={() => {
               if (projectName !== project.name) {
                 matchProjectName(true);
