@@ -4,6 +4,7 @@ import Loading from './partials/Loading';
 import Manual from './partials/Manual';
 import Accordion from './partials/Accordion';
 import Modal from './partials/Modal';
+import BubbleChart from './partials/BubbleChart';
 import moment from 'moment';
 import './css/project_detail.scss';
 
@@ -211,7 +212,30 @@ const ProjectDetail = (props) => {
             </div>
           )}
           {isGraphTabOpened && (
-            <div className="tab-content">Graph</div>
+            <div className="tab-content">
+              <BubbleChart
+                data={[
+                  { "id": 1,
+                    "title": "TypeError",
+                    "count": 29
+                  },
+                  { "id": 2,
+                    "title": "Error",
+                    "count": 69
+                  },
+                  { "id": 3,
+                    "title": "RangeError",
+                    "count": 14
+                  },
+                  { "id": 4,
+                    "title": "SyntaxError",
+                    "count": 56
+                  }
+                ]}
+                width={500}
+                height={500}
+              />
+            </div>
           )}
         </div>
       )}
