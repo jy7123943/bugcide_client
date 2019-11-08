@@ -25,7 +25,8 @@ const mapStateToProps = state => {
       time: index,
       count: errorCount
     }));
-    console.log(newErrorTimeData);
+    newErrorTimeData.unshift({ time: -1, count: 0 });
+    newErrorTimeData.push({ time: 24, count: 0 });
   }
 
   return {

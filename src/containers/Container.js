@@ -3,7 +3,6 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import App from '../components/App';
 import ProjectList from '../components/ProjectList';
-import ProjectDetail from '../components/ProjectDetail';
 import * as actions from '../actions/index';
 import * as api from '../utils/api';
 

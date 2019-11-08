@@ -8,13 +8,11 @@ import Loading from './partials/Loading';
 import './css/style.scss';
 
 const App = (props) => {
-  // console.log('App page props: ', props);
   const {
     jwtoken,
     onProjectListLoad,
     isLoading,
-    isError,
-    user
+    isError
   } = props;
 
   useEffect(() => {

@@ -38,7 +38,9 @@ const Accordion = ({ errorItem }) => {
                 {name}
               </span>
             </li>
-            <li className="message">{message}</li>
+            <li className="message">
+              {message}
+            </li>
           </ul>
           <ul className="error-source">
             <li className="lineno">
@@ -49,6 +51,28 @@ const Accordion = ({ errorItem }) => {
             </li>
           </ul>
         </div>
+        <ul className="search-icons">
+          <li>
+            <a
+              href={`https://stackoverflow.com/search?q=${message}`}
+              target="_blank"
+              className="link-search stackoverflow"
+              title="Search on Stackoverflow"
+              rel="noopener noreferrer"
+            >
+            </a>
+          </li>
+          <li>
+            <a
+              href={`https://www.google.com/search?q=${message}`}
+              target="_blank"
+              className="link-search google"
+              title="Search on Google"
+              rel="noopener noreferrer"
+            >
+            </a>
+          </li>
+        </ul>
         <div className="btn-box">
           <button
             type="button"

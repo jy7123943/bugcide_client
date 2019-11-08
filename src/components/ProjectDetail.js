@@ -217,15 +217,21 @@ const ProjectDetail = (props) => {
             <div className="tab-content">
               {statistics && statistics.name ? (
                 <>
-                  <BubbleChart
-                    data={statistics.name}
-                    width={550}
-                    height={500}
-                  />
+                  <h3 className="chart-title">
+                    Hourly Error Occurrence
+                  </h3>
                   <LineChart
                     data={statistics.time}
-                    width={900}
+                    width={1160}
                     height={450}
+                  />
+                  <h3 className="chart-title">
+                    Error Types
+                  </h3>
+                  <BubbleChart
+                    data={statistics.name}
+                    width={1160}
+                    height={600}
                   />
                 </>
               ) : (

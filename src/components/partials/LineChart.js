@@ -17,19 +17,19 @@ class LineChart extends Component {
       this.setState({ data: data });
     }
 
-    const minX = 0;
-    const maxX = 23;
+    const minX = -1;
+    const maxX = 24;
     const minY = d3.min(data.map(item => item.count));
     const maxY = d3.max(data.map(item => item.count));
 
     let x = d3
       .scaleLinear()
-      .domain([ minX - 0.5, maxX + 0.5 ])
+      .domain([ minX + 0.5, maxX - 0.5 ])
       .range([ 0, width ]);
 
     let y = d3
       .scaleLinear()
-      .domain([ minY - 6, maxY ])
+      .domain([ minY - 8, maxY ])
       .range([ height, height / 3 ]);
 
     this.line = d3
@@ -40,22 +40,40 @@ class LineChart extends Component {
     this.area = d3
       .area()
       .x(d => x(d.time))
-      .y0(() => maxY)
-      .y1(d => y(d.count));
+      .y0(() => height)
+      .y1(d => y(d.count))
 
     const margin = 5;
-    // const xFormat = d3.format('.2');
     const h = height - 1 * margin;
     this.xTicks = x.ticks(data.length).map(d => (
-      <g key={d} transform={`translate(${x(d) - 5}, ${h})`}>
+      <g key={'tick' + d} transform={`translate(${x(d) - 6}, ${h})`}>
         <text
           fontSize="12"
         >
           {`${d}h`}
         </text>
-        <line x1="0" x1="0" y1="0" y2="5" transform="translate(0, -20)"/>
+        <line
+          x1="0"
+          x2="0"
+          y1="5"
+          y2="5"
+          transform="translate(0, -20)"
+        />
       </g>
-    ))
+    ));
+    this.xLines = x.ticks(data.length).map(d => (
+      <g key={'line' + d} transform={`translate(${x(d) - 10}, 0)`}>
+        <line
+          x1="10"
+          x2="10"
+          y1={height - 10}
+          y2="0"
+          transform="translate(0, -20)"
+          strokeWidth="1"
+          stroke="#fff"
+        />
+      </g>
+    ));
     this.mounted = true;
   }
 
@@ -66,19 +84,20 @@ class LineChart extends Component {
     line
       .attr('stroke-dasharray', totalLength)
       .attr('stroke-dashoffset', totalLength)
-      .attr('stroke-width', 10)
-      .attr('stroke', '#425cbb')
+      .attr('stroke-width', 8)
+      .attr('stroke', '#0b2333')
       .transition()
       .duration(3000)
-      .attr('stroke-width', 0)
+      .attr('stroke-width', 3)
       .attr('stroke-dashoffset', 0);
 
     const area = d3.selectAll('.area');
     area
       .attr('transform', 'translate(0, 300)')
+      .attr('fill', 'transparent')
       .transition()
       .duration(2000)
-      .attr('fill', '#eaedfc')
+      .attr('fill', '#a8dbd4')
       .attr('transform', 'translate(0, 0)');
   }
 
@@ -95,18 +114,20 @@ class LineChart extends Component {
     return (
       <div className="line-chart">
         <svg width={this.props.width} height={this.props.height}>
+          <g className="axis-labels">
+            {this.xLines}
+          </g>
           <g>
             <path
               className="line"
               d={this.line(data)}
-              fill="#637ee3"
+              fill="transparent"
               stroke="transparent"
             />
             <path
               className="area"
               d={this.area(data)}
-              fill="#ddd"
-              style={{ opacity: 0.5 }}
+              style={{ opacity: 1 }}
             />
           </g>
           <g className="axis-labels">

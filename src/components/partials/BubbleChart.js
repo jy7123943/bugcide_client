@@ -66,7 +66,7 @@ class BubbleChart extends Component {
       .scaleLinear()
       .domain([ minValue, maxValue ])
       .interpolate(d3.interpolateHcl)
-      .range(['#64b671', '#d76a2f']);
+      .range(['#568a97', '#b7414f']);
 
     const texts = data.map((item, index) => {
       const radiusSize = this.radiusScale(item.count);
@@ -86,7 +86,7 @@ class BubbleChart extends Component {
               dy="6"
               fill="#fff"
               textAnchor="middle"
-              fontSize={'15px'}
+              fontSize={'17px'}
               fontWeight="bold"
             >
               {item.title}

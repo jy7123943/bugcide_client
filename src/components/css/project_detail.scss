@@ -110,7 +110,26 @@
   }
   .error-info {
     flex: 7;
-    padding: 15px 10px 15px 0;
+    padding: 15px 15px 15px 0;
+  }
+  .search-icons {
+    // flex: 1;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    .link-search {
+      display: block;
+      width: 40px;
+      height: 40px;
+      margin-right: 5px;
+      border-radius: 50%;
+      &.google {
+        background: #fff url('../img/icon_google.png') no-repeat center / 30px;
+      }
+      &.stackoverflow {
+        background: #fff url('../img/icon_stackoverflow.png') no-repeat center / 35px;
+      }
+    }
   }
   .error-title,
   .error-source {
@@ -201,7 +220,7 @@
   }
 }
 .error-stack {
-  width: 100%;
+  width: 1160px;
   background: #fff;
   padding: 20px 30px;
   font-size: 14px;
@@ -239,14 +258,23 @@
 }
 
 .bubble-chart {
-  display: flex;
-  align-items: center;
+  position: relative;
+  background: #e9f1f0;
   .item-list {
-    padding: 10px 20px;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    padding: 20px;
+    transform: translateY(-50%);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.6);
     li {
       display: flex;
       margin-bottom: 10px;
       font-size: 16px;
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
     .item-color {
       width: 15px;
@@ -257,4 +285,16 @@
       font-weight: 500;
     }
   }
+}
+.line-chart {
+  margin-bottom: 50px;
+  background: #cdeae6;
+}
+.chart-title {
+  margin: 30px 0 20px;
+  padding-left: 30px;
+  font-size: 25px;
+  color: $chart-blue;
+  font-weight: 500;
+  background: url('../img/icon_chart.png') no-repeat -5px center / 35px;
 }
