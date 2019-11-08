@@ -73,12 +73,16 @@
     }
     &:not(.active) {
       background: $bd-gray;
-      color: $mid-gray
+      color: $mid-blue;
     }
   }
 }
 .tab-content {
   padding: 30px 20px;
+  background: $bg-chart;
+  &.graph {
+    background: #fff;
+  }
 }
 .accordion-parent {
   display: flex;
@@ -259,7 +263,7 @@
 
 .bubble-chart {
   position: relative;
-  background: #e9f1f0;
+  background: $bg-chart;
   .item-list {
     position: absolute;
     top: 50%;

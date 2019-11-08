@@ -108,6 +108,15 @@ const ProjectDetail = (props) => {
             <div className="align-right">
               <button
                 type="button"
+                className="btn-basic btn-icon sm"
+                title="Refresh"
+                onClick={() => {
+                  onProjectDetailLoad(jwtoken, params.token);
+                }}
+              >
+              </button>
+              <button
+                type="button"
                 className="btn-basic btn-delete sm"
                 onClick={() => {
                   setModal(true);
@@ -216,7 +225,7 @@ const ProjectDetail = (props) => {
             </div>
           )}
           {isGraphTabOpened && (
-            <div className="tab-content">
+            <div className="tab-content graph">
               {statistics && statistics.name ? (
                 <>
                   <h3 className="chart-title">

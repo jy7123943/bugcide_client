@@ -3,7 +3,7 @@
 .manual-box {
   margin-top: 30px;
   padding: 20px;
-  border: 1px solid react-native-extended-stylesheet;
+  background: #fff;
 }
 .manual-title {
   font-size: 22px;
@@ -15,7 +15,7 @@
     margin-right: 8px;
     width: 8px;
     height: 8px;
-    background: react-native-extended-stylesheet;
+    background: $mint02;
     border-radius: 50%;
   }
 }
@@ -28,14 +28,14 @@
 .code-title {
   margin: 30px 0 10px;
   font-size: 18px;
-  color: $mid-gray;
+  color: $mid-blue;
 }
 .code-box {
   position: relative;
   padding: 15px;
   padding-left: 20px;
-  background: #fff;
-  color: $mid-gray;
+  background: $bg-chart;
+  color: $mid-blue;
   &:before {
     content: '';
     position: absolute;

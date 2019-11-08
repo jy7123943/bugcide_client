@@ -19,6 +19,7 @@ class BubbleChart extends Component {
 
   componentDidMount() {
     this.mounted = true;
+
     if (this.props.data.length > 0) {
       this.minValue = 0.95 * d3.min(this.props.data, item => item.count);
       this.maxValue = 1.05 * d3.max(this.props.data, item => item.count);
@@ -66,7 +67,7 @@ class BubbleChart extends Component {
       .scaleLinear()
       .domain([ minValue, maxValue ])
       .interpolate(d3.interpolateHcl)
-      .range(['#568a97', '#b7414f']);
+      .range([ '#568a97', '#b7414f' ]);
 
     const texts = data.map((item, index) => {
       const radiusSize = this.radiusScale(item.count);
@@ -81,23 +82,23 @@ class BubbleChart extends Component {
             r={radiusSize}
             fill={this.color(item.count)}
           />
-          {radiusSize > 40 && (
+          {radiusSize > 50 && (
             <text
               dy="6"
               fill="#fff"
               textAnchor="middle"
-              fontSize={'17px'}
+              fontSize="15px"
               fontWeight="bold"
             >
               {item.title}
             </text>
           )}
-          {radiusSize > 10 && radiusSize < 40 && (
+          {radiusSize > 10 && radiusSize <= 50 && (
             <text
               dy="6"
               fill="#fff"
               textAnchor="middle"
-              fontSize={'12px'}
+              fontSize="12px"
               fontWeight="bold"
             >
               {item.count}
@@ -117,7 +118,10 @@ class BubbleChart extends Component {
 
     return (
       <div className="bubble-chart">
-        <svg width={this.props.width} height={this.props.height}>
+        <svg
+          width={this.props.width}
+          height={this.props.height}
+        >
           {this.renderBubbles(this.state.data)}
         </svg>
         <ul className="item-list">

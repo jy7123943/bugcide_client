@@ -32,6 +32,12 @@ body {
     border: 2px solid $red;
     background: none;
   }
+  &.btn-icon {
+    margin-right: 5px;
+    width: 50px;
+    background: url('../img/icon_refresh.png') no-repeat center / 18px;
+    border: 2px solid #a1a0a0;
+  }
 }
 .gnb {
   position: fixed;
