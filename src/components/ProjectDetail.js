@@ -35,7 +35,9 @@ const ProjectDetail = (props) => {
   const [ isProjectNameWrong, matchProjectName ] = useState(false);
 
   useEffect(() => {
-    onProjectDetailLoad(jwtoken, params.token);
+    if (jwtoken) {
+      onProjectDetailLoad(jwtoken, params.token);
+    }
   }, [ jwtoken, onProjectDetailLoad, params ]);
 
   if (isLoading) {
