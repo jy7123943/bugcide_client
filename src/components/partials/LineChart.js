@@ -29,7 +29,7 @@ class LineChart extends Component {
 
     let y = d3
       .scaleLinear()
-      .domain([ minY - 8, maxY ])
+      .domain([ minY, maxY ])
       .range([ height, height / 3 ]);
 
     this.line = d3
@@ -46,27 +46,40 @@ class LineChart extends Component {
     const margin = 5;
     const h = height - 1 * margin;
     this.xTicks = x.ticks(data.length).map(d => (
-      <g key={'tick' + d} transform={`translate(${x(d) - 6}, ${h})`}>
+      <g
+        key={'tick' + d}
+        transform={`translate(${x(d) - 6}, ${h})`}
+      >
         <text
           fontSize="12"
         >
           {`${d}h`}
         </text>
-        <line
-          x1="0"
-          x2="0"
-          y1="5"
-          y2="5"
-          transform="translate(0, -20)"
-        />
+      </g>
+    ));
+    this.xValues = x.ticks(data.length).map((d, i) => (
+      <g
+        key={'value' + d}
+        transform={`translate(${x(d) - 6}, ${y(data[i + 1].count) - 10})`}
+        >
+        <text
+          fontSize="18"
+          className="xvalue"
+          fill="#0b2333"
+        >
+          {data[i + 1].count > 0 && data[i + 1].count}
+        </text>
       </g>
     ));
     this.xLines = x.ticks(data.length).map(d => (
-      <g key={'line' + d} transform={`translate(${x(d) - 10}, 0)`}>
+      <g
+        key={'line' + d}
+        transform={`translate(${x(d) - 10}, 0)`}
+      >
         <line
           x1="10"
           x2="10"
-          y1={height - 10}
+          y1={height}
           y2="0"
           transform="translate(0, -20)"
           strokeWidth="1"
@@ -99,6 +112,16 @@ class LineChart extends Component {
       .duration(2000)
       .attr('fill', '#a8dbd4')
       .attr('transform', 'translate(0, 0)');
+
+    const xvalue = d3.selectAll('.xvalue');
+    xvalue
+      .attr('fill', 'transparent')
+      .attr('transform', 'translate(0, -20)')
+      .transition()
+      .delay((d, i) => 100 * i)
+      .duration(500)
+      .attr('fill', '#0b2333')
+      .attr('transform', 'translate(0, 0)')
   }
 
   componentWillUnmount() {
@@ -132,6 +155,9 @@ class LineChart extends Component {
           </g>
           <g className="axis-labels">
             {this.xTicks}
+          </g>
+          <g className="axis-labels">
+            {this.xValues}
           </g>
         </svg>
       </div>
