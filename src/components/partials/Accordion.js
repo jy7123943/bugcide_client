@@ -42,14 +42,20 @@ const Accordion = ({ errorItem }) => {
               {message}
             </li>
           </ul>
-          <ul className="error-source">
-            <li className="lineno">
-              Line {lineno}:{colno}
-            </li>
-            <li className="filename">
-              {!!filename && filename.replace('?', '')}
-            </li>
-          </ul>
+          {(lineno || colno || filename) && (
+            <ul className="error-source">
+              {lineno && (
+                <li className="lineno">
+                  Line: {lineno}:{colno}
+                </li>
+              )}
+              {!!filename && (
+                <li className="filename">
+                  {filename.replace('?', '')}
+                </li>
+              )}
+            </ul>
+          )}
         </div>
         <ul className="search-icons">
           <li>

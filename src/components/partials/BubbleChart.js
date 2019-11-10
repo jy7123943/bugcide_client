@@ -80,7 +80,7 @@ class BubbleChart extends Component {
         >
           <circle
             r={radiusSize}
-            fill={this.color(item.count)}
+            fill={this.color(item.count * (index + 1))}
           />
           {radiusSize > 50 && (
             <text
@@ -128,7 +128,7 @@ class BubbleChart extends Component {
           {this.state.data.map((item, i) => (
             <li key={i}>
               <div
-                style={{ backgroundColor: this.color(item.count) }}
+                style={{ backgroundColor: this.color(item.count * (i + 1)) }}
                 className="item-color"
               >
               </div>
