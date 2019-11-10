@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Loading from './partials/Loading';
+import Error from './partials/Error';
 import Manual from './partials/Manual';
 import Accordion from './partials/Accordion';
 import Modal from './partials/Modal';
@@ -10,7 +11,6 @@ import moment from 'moment';
 import './css/project_detail.scss';
 
 const ProjectDetail = (props) => {
-  console.log('ProjectDetail page props: ', props);
   const {
     jwtoken,
     isLoading,
@@ -42,6 +42,10 @@ const ProjectDetail = (props) => {
 
   if (isLoading) {
     return <Loading />;
+  }
+
+  if (isError) {
+    return <Error />;
   }
 
   return (

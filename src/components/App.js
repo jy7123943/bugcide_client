@@ -5,6 +5,7 @@ import Header from './partials/Header';
 import Container from '../containers/Container';
 import ProjectDetail from '../containers/ProjectDetail';
 import Loading from './partials/Loading';
+import Error from './partials/Error';
 import './css/style.scss';
 
 const App = (props) => {
@@ -26,7 +27,7 @@ const App = (props) => {
   }
 
   if (isError) {
-    return <div>Error</div>;
+    return <Error />;
   }
 
   return (
@@ -45,6 +46,15 @@ const App = (props) => {
           exact path="/project/:token"
           render={routerProps => (
             <ProjectDetail {...routerProps} />
+          )}
+        />
+        <Route
+          path="/"
+          render={() => (
+            <Error
+              status="404"
+              message="Page Not Found"
+            />
           )}
         />
       </Switch>

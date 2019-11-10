@@ -1,4 +1,5 @@
 import React from 'react';
+import LinkList from './partials/LinkList';
 import './css/style.scss';
 import './css/login.scss';
 
@@ -21,6 +22,7 @@ const Login = (props) => {
         >
           Login with Github
         </button>
+        <LinkList />
       </div>
     </div>
   );

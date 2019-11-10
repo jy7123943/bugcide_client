@@ -30,6 +30,10 @@
   font-size: 18px;
   color: $mid-blue;
 }
+.code-desc {
+  margin-top: 20px;
+  line-height: 1.5;
+}
 .code-box {
   position: relative;
   padding: 15px;
@@ -47,5 +51,11 @@
   }
   code {
     font-family: 'Inconsolata', 'consolas', monospace;
+  }
+}
+.link-icon-box {
+  margin: 15px 0;
+  li {
+    border: 1px solid $mint01;
   }
 }

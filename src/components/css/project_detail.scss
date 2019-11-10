@@ -82,6 +82,12 @@
   background: $bg-chart;
   &.graph {
     background: #fff;
+    .no-data {
+      padding: 20px 0;
+      text-align: center;
+      font-size: 50px;
+      color: $bd-gray;
+    }
   }
 }
 .accordion-parent {
@@ -291,6 +297,7 @@
   }
 }
 .line-chart {
+  height: 450px;
   margin-bottom: 50px;
   background: #cdeae6;
 }

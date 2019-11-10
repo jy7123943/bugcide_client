@@ -25,6 +25,9 @@
       td {
         padding: 40px 0;
       }
+      td[colspan="2"]:after {
+        content: none;
+      }
     }
     td {
       background: #fff;
