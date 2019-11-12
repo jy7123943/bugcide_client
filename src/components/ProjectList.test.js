@@ -22,7 +22,7 @@ describe('<ProjectList />', () => {
       listCreateFailMessage: null,
       onProjectCreate: jest.fn(),
       onProjectListLoad: jest.fn()
-    }
+    };
     wrapper = shallow(
       <ProjectList
         {...initialProps}
@@ -139,10 +139,20 @@ describe('<ProjectList />', () => {
         />
       </Router>
     );
-    
+
     let input = wrapper.find('.modal-container input[type="text"]');
-    input.simulate('change', 'mock project');
     let btn = wrapper.find('.modal-container .btn-basic.block');
+    expect(input).toHaveLength(1);
+    expect(btn).toHaveLength(1);
+
+    input.simulate('change', {target: { value: ' ' }});
+    wrapper.update();
+    btn.simulate('click');
+
+    expect(initialProps.onProjectCreate).not.toHaveBeenCalled();
+
+    input.simulate('change', {target: { value: 'mock project' }});
+    wrapper.update();
     btn.simulate('click');
 
     expect(initialProps.onProjectCreate).toHaveBeenCalled();
