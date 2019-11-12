@@ -111,7 +111,6 @@ const mapDispatchToProps = dispatch => ({
         return dispatch(actions.postNewProjectFailure(response.message));
       }
 
-      dispatch(actions.postNewProjectSuccess(response.newProject));
       dispatch(actions.closeModal());
 
       handleProjectLoad(dispatch, token, 0);

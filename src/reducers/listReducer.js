@@ -31,12 +31,6 @@ const listReducer = (state = listInitState, action) => {
         isLoading: false,
         isError: true
       };
-    case (types.POST_NEW_PROJECT_SUCCESS):
-      return {
-        ...state,
-        listCreateFailMessage: null,
-        currentPageNo: 0
-      };
     case (types.POST_NEW_PROJECT_FAILURE):
       return {
         ...state,

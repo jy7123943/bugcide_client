@@ -24,10 +24,6 @@ export const closeModal = () => ({
   type: types.CLOSE_MODAL
 });
 
-export const postNewProjectSuccess = (newProject) => ({
-  type: types.POST_NEW_PROJECT_SUCCESS,
-  newProject
-});
 export const postNewProjectFailure = (message) => ({
   type: types.POST_NEW_PROJECT_FAILURE,
   message
