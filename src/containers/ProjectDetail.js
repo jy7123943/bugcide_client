@@ -66,8 +66,6 @@ const mapDispatchToProps = dispatch => ({
   },
   onProjectDelete: async (token, projectToken) => {
     try {
-      dispatch(actions.deleteProjectPending());
-
       const response = await api.deleteProjectApi(token, projectToken);
       if (response.result === 'unauthorized') {
         window.localStorage.removeItem('bugcideToken');

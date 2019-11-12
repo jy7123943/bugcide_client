@@ -41,7 +41,3 @@ export const getProjectDetailSuccess = (data, page, sort) => ({
 export const getProjectDetailFailure = () => ({
   type: types.GET_PROJECT_DETAIL_FAILURE
 });
-
-export const deleteProjectPending = () => ({
-  type: types.DELETE_PROJECT_PENDING
-});
