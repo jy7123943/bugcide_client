@@ -15,7 +15,7 @@ const Manual = (props) => {
       </section>
       <LinkList />
       <section className="code-area">
-        <h4 className="code-title">for Vanilla Javascript</h4>
+        <h4 className="code-title">For Vanilla Javascript</h4>
         <p className="code-desc">
           You need to include bugcide.vanilla.js first.<br />
           You can download the latest version of bugcide.vanilla.js on GitHub.<br />
@@ -23,7 +23,7 @@ const Manual = (props) => {
         </p>
         <pre className="code-box">
           <code>
-            &lt;script src=&#34;https:&#47;&#47;cdn.jsdelivr.net&#47;npm&#47;bugcide&#64;1.0.0/dist/bugcide.vanilla.js&#34;&gt;&lt;&#47;script&gt;
+            &lt;script src=&#34;https:&#47;&#47;cdn.jsdelivr.net&#47;npm&#47;bugcide&#64;1.0.2/dist/bugcide.vanilla.js&#34;&gt;&lt;&#47;script&gt;
           </code>
         </pre>
         <p className="code-desc">
@@ -31,7 +31,7 @@ const Manual = (props) => {
         </p>
         <pre className="code-box">
           <code>
-            &lt;script src=&#34;https:&#47;&#47;cdn.jsdelivr.net&#47;npm&#47;bugcide&#64;1.0.0/dist/bugcide.vanilla.min.js&#34;&gt;&lt;&#47;script&gt;
+            &lt;script src=&#34;https:&#47;&#47;cdn.jsdelivr.net&#47;npm&#47;bugcide&#64;1.0.2/dist/bugcide.vanilla.min.js&#34;&gt;&lt;&#47;script&gt;
           </code>
         </pre>
         <p className="code-desc">
@@ -47,7 +47,7 @@ const Manual = (props) => {
         </pre>
       </section>
       <section className="code-area">
-        <h4 className="code-title">for React.js</h4>
+        <h4 className="code-title">For React.js</h4>
         <p className="code-desc">
           You can easily install the latest version of Bugcide package via npm.
         </p>
@@ -56,13 +56,8 @@ const Manual = (props) => {
             npm i bugcide
           </code>
         </pre>
-        <pre className="code-box">
-          <code>
-            import Bugcide from 'bugcide';
-          </code>
-        </pre>
         <p className="code-desc">
-          The examples below show how to load Bugcide package in React project.
+          <strong>- index.js</strong>
         </p>
         <pre className="code-box">
           <code>
@@ -74,6 +69,32 @@ const Manual = (props) => {
             new Bugcide().init(&#123; projectToken: '{projectToken}' &#125;)&#59;<br />
             <br />
             render(&lt;App /&gt;, document.getElementById('root'))&#59;
+          </code>
+        </pre>
+        <p className="code-desc">
+          If you want to catch all compile error, you need to install bugcide-webpack-plugin as well.
+        </p>
+        <pre className="code-box">
+          <code>
+            npm i bugcide-webpack-plugin
+          </code>
+        </pre>
+        <p className="code-desc">
+          <strong>- webpack.config.js</strong>
+        </p>
+        <pre className="code-box">
+          <code>
+            const bugcidePlugin = require('bugcide-webpack-plugin');<br/><br/>
+
+            module.exports = &#123;<br/>
+            &nbsp;&nbsp;...<br/>
+            &nbsp;&nbsp;plugins: &#91;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;...<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;new bugcidePlugin(&#123;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;projectToken: &lt;your-project-token&gt;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&#125;)<br/>
+            &nbsp;&nbsp;&#93;<br/>
+            &#125;;<br/>
           </code>
         </pre>
       </section>
