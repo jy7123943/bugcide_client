@@ -25,7 +25,7 @@ const LinkList = () => {
       </li>
       <li>
         <a
-          href="https://www.npmjs.com/package/bugcide"
+          href="https://www.npmjs.com/package/bugcide-webpack-plugin"
           target="_blank"
           rel="noopener noreferrer"
           className="webpack"

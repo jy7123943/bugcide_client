@@ -1,8 +1,9 @@
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import ProjectList from './ProjectList';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -114,5 +115,36 @@ describe('<ProjectList />', () => {
     expect(btn.hasClass('disabled')).toEqual(false);
     btn.simulate('click');
     expect(initialProps.onProjectListLoad).toHaveBeenCalledWith(initialProps.jwtoken, currentPageNo + 1);
+  });
+
+  it('renders Modal component if isModalOpened value is true', () => {
+    wrapper = mount(
+      <Router>
+        <ProjectList
+          {...initialProps}
+          isModalOpened={true}
+        />
+      </Router>
+    );
+
+    expect(wrapper.find('.modal-container')).toHaveLength(1);
+  });
+
+  it('calls onProjectCreate function if user click Modal Submit button', () => {
+    wrapper = mount(
+      <Router>
+        <ProjectList
+          {...initialProps}
+          isModalOpened={true}
+        />
+      </Router>
+    );
+    
+    let input = wrapper.find('.modal-container input[type="text"]');
+    input.simulate('change', 'mock project');
+    let btn = wrapper.find('.modal-container .btn-basic.block');
+    btn.simulate('click');
+
+    expect(initialProps.onProjectCreate).toHaveBeenCalled();
   });
 });

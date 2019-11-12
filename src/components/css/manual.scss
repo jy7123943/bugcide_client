@@ -4,6 +4,12 @@
   margin-top: 30px;
   padding: 20px;
   background: #fff;
+  .link-icon-box {
+    margin: 15px 0;
+    li {
+      border: 1px solid $mint01;
+    }
+  }
 }
 .manual-title {
   font-size: 22px;
@@ -51,11 +57,5 @@
   }
   code {
     font-family: 'Inconsolata', 'consolas', monospace;
-  }
-}
-.link-icon-box {
-  margin: 15px 0;
-  li {
-    border: 1px solid $mint01;
   }
 }
