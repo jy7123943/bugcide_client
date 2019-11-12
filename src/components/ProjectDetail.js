@@ -55,31 +55,15 @@ const ProjectDetail = (props) => {
           onModalClose={() => {
             setModal(false);
           }}
+          inputValue={projectName}
+          onInputChange={(e) => {
+            setProjectName(e.target.value);
+          }}
+          hasFailMessage={!!isProjectNameWrong}
+          failMessage="Project Name not matched!"
+          labelMessage01="Please type in the name of the project to confirm."
+          labelMessage02="Once you delete a project, there is no going back. Please be certain."
         >
-          <label>
-            <span className="label-basic">
-              Project Name
-            </span>
-            <input
-              type="text"
-              value={projectName}
-              onChange={(e) => {
-                setProjectName(e.target.value);
-              }}
-              className="input-basic"
-            />
-            {!!isProjectNameWrong && (
-              <span className="label-info txt-red">
-                Project Name not matched!
-              </span>
-            )}
-            <span className="label-info">
-              Please type in the name of the project to confirm.
-            </span>
-            <span className="label-info">
-              Once you delete a project, there is no going back. Please be certain.
-            </span>
-          </label>
           <button
             type="button"
             className="btn-basic block"

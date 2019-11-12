@@ -27,31 +27,15 @@ const ProjectList = (props) => {
       {isModalOpened && (
         <Modal
           onModalClose={handleModalClose}
+          onInputChange={(e) => {
+            setProjectName(e.target.value);
+          }}
+          inputValue={projectName}
+          hasFailMessage={!!listCreateFailMessage}
+          failMessage={listCreateFailMessage}
+          labelMessage01="Upper, lower, numeric characters, single space allowed."
+          labelMessage02="1-25 characters long."
         >
-          <label>
-            <span className="label-basic">
-              Project Name
-            </span>
-            <input
-              type="text"
-              value={projectName}
-              onChange={(e) => {
-                setProjectName(e.target.value);
-              }}
-              className="input-basic"
-            />
-            {!!listCreateFailMessage && (
-              <span className="label-info txt-red">
-                {listCreateFailMessage}
-              </span>
-            )}
-            <span className="label-info">
-              Upper, lower, numeric characters, single space allowed.
-            </span>
-            <span className="label-info">
-              1-25 characters long.
-            </span>
-          </label>
           <button
             type="button"
             className="btn-basic block"
