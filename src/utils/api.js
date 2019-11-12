@@ -7,7 +7,12 @@ export const userLoginApi = userInfo => {
     data: userInfo
   })
     .then(res => res.data)
-    .catch(err => err.response.data);
+    .catch(err => {
+      if (err.response) {
+        return err.response.data;
+      }
+      throw err;
+    });
 };
 
 export const getProjectListApi = (token, page = 0) => {
@@ -19,7 +24,12 @@ export const getProjectListApi = (token, page = 0) => {
     }
   })
     .then(res => res.data)
-    .catch(err => err.response.data);
+    .catch(err => {
+      if (err.response) {
+        return err.response.data;
+      }
+      throw err;
+    });
 };
 
 export const postNewProjectApi = (token, newProject) => {
@@ -32,7 +42,12 @@ export const postNewProjectApi = (token, newProject) => {
     data: newProject
   })
     .then(res => res.data)
-    .catch(err => err.response.data);
+    .catch(err => {
+      if (err.response) {
+        return err.response.data;
+      }
+      throw err;
+    });
 };
 
 export const getProjectDetailApi = (token, projectToken, page = 0, sort='asc') => {
@@ -44,7 +59,12 @@ export const getProjectDetailApi = (token, projectToken, page = 0, sort='asc') =
     }
   })
     .then(res => res.data)
-    .catch(err => err.response.data);
+    .catch(err => {
+      if (err.response) {
+        return err.response.data;
+      }
+      throw err;
+    });
 };
 
 export const deleteProjectApi = (token, projectToken) => {
@@ -56,5 +76,10 @@ export const deleteProjectApi = (token, projectToken) => {
     }
   })
     .then(res => res.data)
-    .catch(err => err.response.data);
+    .catch(err => {
+      if (err.response) {
+        return err.response.data;
+      }
+      throw err;
+    });
 };
