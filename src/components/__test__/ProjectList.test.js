@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, mount } from 'enzyme';
-import ProjectList from './ProjectList';
+import ProjectList from '../ProjectList';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 Enzyme.configure({ adapter: new Adapter() });

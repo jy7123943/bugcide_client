@@ -1,8 +1,8 @@
-import * as actions from '../actions/index';
-import authReducer from './authReducer';
-import listReducer from './listReducer';
-import detailReducer from './detailReducer';
-import modalReducer from './modalReducer';
+import * as actions from '../../actions/index';
+import authReducer from '../authReducer';
+import listReducer from '../listReducer';
+import detailReducer from '../detailReducer';
+import modalReducer from '../modalReducer';
 
 describe('reducer', () => {
   describe('authReducer', () => {
