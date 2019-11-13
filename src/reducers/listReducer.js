@@ -22,6 +22,7 @@ const listReducer = (state = listInitState, action) => {
         isError: false,
         user: { ...action.userInfo },
         projectList: action.projectList.slice(),
+        listCreateFailMessage: null,
         totalProjectsLength: action.totalProjectsLength,
         currentPageNo: action.page
       };
