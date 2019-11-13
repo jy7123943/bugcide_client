@@ -39,7 +39,7 @@ const Manual = (props) => {
         </p>
         <pre className="code-box">
           <code>
-            &lt;script src=&#34;https:&#47;&#47;cdn.jsdelivr.net&#47;npm&#47;bugcide&#64;1.0.0/dist/bugcide.vanilla.js&#34;&gt;&lt;&#47;script&gt;<br />
+            &lt;script src=&#34;https:&#47;&#47;cdn.jsdelivr.net&#47;npm&#47;bugcide&#64;1.0.2/dist/bugcide.vanilla.js&#34;&gt;&lt;&#47;script&gt;<br />
             &lt;script&gt;<br />
             &nbsp;&nbsp;new Bugcide().init(&#123; projectToken: &#39;{projectToken}&#39; &#125;);<br />
             &lt;&#47;script&gt;
@@ -91,7 +91,7 @@ const Manual = (props) => {
             &nbsp;&nbsp;plugins: &#91;<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;...<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;new bugcidePlugin(&#123;<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;projectToken: &lt;your-project-token&gt;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;projectToken: '{projectToken}'<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;&#125;)<br/>
             &nbsp;&nbsp;&#93;<br/>
             &#125;;<br/>
