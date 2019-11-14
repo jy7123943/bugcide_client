@@ -67,8 +67,8 @@ const mapDispatchToProps = dispatch => ({
       } = await firebase.auth().signInWithPopup(provider);
 
       const userInfo = {
-        socialId: username,
-        name: profile.name,
+        socialId: profile.id,
+        name: username,
         profileUrl: profile.avatar_url
       };
 
