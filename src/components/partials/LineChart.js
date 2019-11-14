@@ -41,7 +41,7 @@ class LineChart extends Component {
       .area()
       .x(d => x(d.time))
       .y0(() => height)
-      .y1(d => y(d.count))
+      .y1(d => y(d.count));
 
     const margin = 5;
     const h = height - 1 * margin;
@@ -61,7 +61,7 @@ class LineChart extends Component {
       <g
         key={'value' + d}
         transform={`translate(${x(d) - 6}, ${y(data[i + 1].count) - 10})`}
-        >
+      >
         <text
           fontSize="18"
           className="xvalue"
@@ -121,7 +121,7 @@ class LineChart extends Component {
       .delay((d, i) => 100 * i)
       .duration(500)
       .attr('fill', '#0b2333')
-      .attr('transform', 'translate(0, 0)')
+      .attr('transform', 'translate(0, 0)');
   }
 
   componentWillUnmount() {

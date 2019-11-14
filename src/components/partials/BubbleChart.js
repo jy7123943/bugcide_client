@@ -39,7 +39,7 @@ class BubbleChart extends Component {
       .domain([ this.minValue, this.maxValue ]);
 
     return fx(value);
-  }
+  };
 
   simulatePositions = data => {
     this.simulation = d3
@@ -57,7 +57,7 @@ class BubbleChart extends Component {
           this.setState({ data });
         }
       });
-  }
+  };
 
   renderBubbles = data => {
     const minValue = 0.95 * d3.min(data, item => item.count);
@@ -109,7 +109,7 @@ class BubbleChart extends Component {
     });
 
     return texts;
-  }
+  };
 
   render() {
     if (!this.mounted) {

@@ -4,7 +4,6 @@ import * as actions from '../actions/index';
 import * as api from '../utils/api';
 
 const mapStateToProps = state => {
-  console.log('Detail state: ', state);
   const {
     authReducer,
     detailReducer
@@ -19,8 +18,6 @@ const mapStateToProps = state => {
       title: errorName,
       count: statistics.name[errorName]
     }));
-    // const addZero = (num) => num > 9 ? num : '0' + num;
-    // `${addZero(index)}:00~${addZero(index + 1)}:00`
     newErrorTimeData = statistics.time.map((errorCount, index) => ({
       time: index,
       count: errorCount
