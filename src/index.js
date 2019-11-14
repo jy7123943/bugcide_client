@@ -1,15 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { applyMiddleware, createStore } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import logger from 'redux-logger';
 import { BrowserRouter as Router } from 'react-router-dom';
 import rootReducer from './reducers';
 import Container from './containers/Container';
 import './normalize.v8.0.1.css';
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(rootReducer, applyMiddleware(logger));
+const store = createStore(rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>

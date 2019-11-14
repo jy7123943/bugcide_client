@@ -9,7 +9,6 @@ export const userLoginApi = userInfo => {
     .then(res => res.data)
     .catch(err => {
       if (err.response) {
-        console.log(err.response);
         return err.response.data;
       }
       throw err;
@@ -27,7 +26,6 @@ export const getProjectListApi = (token, page = 0) => {
     .then(res => res.data)
     .catch(err => {
       if (err.response) {
-        console.log(err.response);
         return err.response.data;
       }
       throw err;
@@ -46,7 +44,6 @@ export const postNewProjectApi = (token, newProject) => {
     .then(res => res.data)
     .catch(err => {
       if (err.response) {
-        console.log(err.response);
         return err.response.data;
       }
       throw err;
@@ -64,7 +61,6 @@ export const getProjectDetailApi = (token, projectToken, page = 0, sort='asc') =
     .then(res => res.data)
     .catch(err => {
       if (err.response) {
-        console.log(err.response);
         return err.response.data;
       }
       throw err;
@@ -82,7 +78,6 @@ export const deleteProjectApi = (token, projectToken) => {
     .then(res => res.data)
     .catch(err => {
       if (err.response) {
-        console.log(err.response);
         return err.response.data;
       }
       throw err;
