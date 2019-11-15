@@ -12,31 +12,29 @@ const mapStateToProps = state => {
   const { statistics } = detailReducer;
 
   let newErrorNameData;
-  let newErrorTimeData = new Array(24).fill(0);
+  let newErrorTimeData;
   if (statistics && statistics.name) {
     newErrorNameData = Object.keys(statistics.name).map(errorName => ({
       title: errorName,
       count: statistics.name[errorName]
     }));
 
+    newErrorTimeData = statistics.time.map((errorCount, index) => ({
+      time: index,
+      count: 0
+    }));
+
     statistics.time.forEach((errorCount, index) => {
       let today = new Date();
       today.setUTCHours(index);
       let hour = today.getHours();
-      console.log(hour);
 
-      newErrorTimeData[hour].push({
-        time: index,
+      newErrorTimeData[hour] = {
+        time: hour,
         count: errorCount
-      });
+      };
     });
-    // newErrorTimeData = statistics.time.map((errorCount, index) => {
 
-    //   return {
-    //     time: index,
-    //     count: errorCount
-    //   };
-    // });
     newErrorTimeData.unshift({ time: -1, count: 0 });
     newErrorTimeData.push({ time: 24, count: 0 });
   }
