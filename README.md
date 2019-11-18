@@ -1,4 +1,4 @@
-![logo](./public/apple-touch-icon.png)
+![logo](./public/logo192.png)
 
 # Bugcide (Client & Server & Npm Module & Webpack Plugin)
 
@@ -6,7 +6,7 @@
 **Bugcide**는 프론트엔드 개발을 하는 도중에 발생하는 에러를 수집하여 기록해주는 에러 트래킹 모듈입니다. 지원하는 개발 언어는 JavaScript로 Vanilla JavaScript와 React 개발 환경을 지원합니다. 아래의 Installation 가이드대로 설치 후 실행하면 프론트엔드 개발 시 발생하는 모든 에러를 감지하여 프로젝트별로 에러 로그를 관리해줍니다.
 
 ## Preview
-배포 링크:
+**배포 링크**:
 - Client: [https://www.bugcide.live](https://www.bugcide.live)
 - Npm Module: [https://www.npmjs.com/package/bugcide](https://www.npmjs.com/package/bugcide)
 - Webpack Plugin: [https://www.npmjs.com/package/bugcide-webpack-plugin](https://www.npmjs.com/package/bugcide-webpack-plugin)
@@ -33,7 +33,7 @@
 Bugcide Client는 Firebase SDK로 GitHub 로그인을 구현했습니다.  
 따라서 로컬에서 실행하기 위해서는 아래 과정이 선행되어야 합니다.
 
-1. 아래 링크를 클릭하여 1단계와 2단계를 진행합니다.
+1. 아래 링크를 클릭하여 1단계와 2단계를 진행합니다.  
 [Click Here](https://firebase.google.com/docs/web/setup?hl=ko)
 2. 1번을 진행하고 얻은 Firebase 구성 객체의 항목들과 서버 주소를 `.env` 파일에 다음과 같이 추가합니다.
 ```
@@ -46,7 +46,7 @@ REACT_APP_FIREBASE_MESSAGING_SENDER_ID=<sender-id>
 REACT_APP_FIREBASE_APP_ID=<app-id>
 REACT_APP_SERVER_URL=http://localhost:8080
 ```
-3. 아래 링크를 클릭하여 '시작하기 전에' 파트를 2번부터 진행합니다.
+3. 아래 링크를 클릭하여 '시작하기 전에' 파트를 2번부터 진행합니다.  
 [Click Here](https://firebase.google.com/docs/auth/web/github-auth?hl=ko)
 
 ### Server
@@ -115,6 +115,20 @@ module.exports = {
     })
   ]
 };
+```
+
+#### For Vanilla JavaScript
+1. jsDelivr CDN 이용 또는 [GitHub](https://github.com/jy7123943/bugcide_npm_package)에서 bugcide.vanilla.js 다운로드
+```javascript
+<script src="https://cdn.jsdelivr.net/npm/bugcide@1.0.3/dist/bugcide.vanilla.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bugcide@1.0.3/dist/bugcide.vanilla.min.js"></script> // minified version
+```
+2. 아래 코드 추가
+```javascript
+<script src="https://cdn.jsdelivr.net/npm/bugcide@1.0.3/dist/bugcide.vanilla.js"></script>
+<script>
+  new Bugcide().init({ projectToken: <your-project-token> });
+</script>
 ```
 
 ## Skills
