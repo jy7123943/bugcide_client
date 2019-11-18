@@ -1,68 +1,178 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![logo](./public/apple-touch-icon.png)
 
-## Available Scripts
+# Bugcide (Client & Server & Npm Module & Webpack Plugin)
 
-In the project directory, you can run:
+## Introduction
+**Bugcide**는 프론트엔드 개발을 하는 도중에 발생하는 에러를 수집하여 기록해주는 에러 트래킹 모듈입니다. 지원하는 개발 언어는 JavaScript로 Vanilla JavaScript와 React 개발 환경을 지원합니다. 아래의 Installation 가이드대로 설치 후 실행하면 프론트엔드 개발 시 발생하는 모든 에러를 감지하여 프로젝트별로 에러 로그를 관리해줍니다.
 
-### `yarn start`
+## Preview
+배포 링크:
+- Client: [https://www.bugcide.live](https://www.bugcide.live)
+- Npm Module: [https://www.npmjs.com/package/bugcide](https://www.npmjs.com/package/bugcide)
+- Webpack Plugin: [https://www.npmjs.com/package/bugcide-webpack-plugin](https://www.npmjs.com/package/bugcide-webpack-plugin)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
+- GitHub 소셜 로그인
+- Npm Module과 Webpack Plugin 지원
+- Browser 에러 및 Webpack Compile 에러 감지 및 수집
+- 프로젝트별 에러 관리
+- 시간대별 에러 타임라인 보기 제공
+- 최신순 및 역순 정렬 가능
+- 에러 타임라인 페이지 페이지네이션 기능
+- 발생한 에러 메시지로 Google 및 Stack Overflow 검색 기능
+- 시간대별 에러 발생량 라인 차트 제공
+- 에러 타입별 버블 차트 제공
+- Browser 에러 연속 발생 시 console 창에 응원 메시지 제공
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Requirements
+- 로그인 시 사용자 GitHub 계정 필요
+- ES2015+ 지원 최신 Chrome Browser 권장
 
-### `yarn test`
+## Prerequisites
+### Client
+Bugcide Client는 Firebase SDK로 GitHub 로그인을 구현했습니다.  
+따라서 로컬에서 실행하기 위해서는 아래 과정이 선행되어야 합니다.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. 아래 링크를 클릭하여 1단계와 2단계를 진행합니다.
+[Click Here](https://firebase.google.com/docs/web/setup?hl=ko)
+2. 1번을 진행하고 얻은 Firebase 구성 객체의 항목들과 서버 주소를 `.env` 파일에 다음과 같이 추가합니다.
+```
+REACT_APP_FIREBASE_API_KEY=<api-key>
+REACT_APP_FIREBASE_AUTH_DOMAIN=<project-id>.firebaseapp.com
+REACT_APP_FIREBASE_DATABASE_URL=https://<project-id>.firebaseio.com
+REACT_APP_FIREBASE_PROJECT_ID=<project-id>
+REACT_APP_FIREBASE_STORAGE_BUCKET=<project-id>.appspot.com
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=<sender-id>
+REACT_APP_FIREBASE_APP_ID=<app-id>
+REACT_APP_SERVER_URL=http://localhost:8080
+```
+3. 아래 링크를 클릭하여 '시작하기 전에' 파트를 2번부터 진행합니다.
+[Click Here](https://firebase.google.com/docs/auth/web/github-auth?hl=ko)
 
-### `yarn build`
+### Server
+`.env` 파일을 생성하여 다음과 같이 환경변수를 입력한 후 저장합니다.  
+<>를 제거하고 사용자의 MongoDB Connection String과 Jwt Secret Key로 사용할 String을 입력해주세요.
+```
+PORT=8080
+MONGODB_ATLAS_URL=<mongoDB-connection-string>
+JWT_SECRET_KEY=<jwt-secret-key>
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation
+### Client
+```
+git clone https://github.com/jy7123943/bugcide_client.git
+cd bugcide_client
+# 위에서 생성한 `.env`파일을 Root 디렉토리에 추가
+npm install
+npm start
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Server
+```
+git clone https://github.com/jy7123943/bugcide_server.git
+cd bugcide_server
+# 위에서 생성한 `.env`파일을 Root 디렉토리에 추가
+npm install
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Npm Module & Webpack Plugin
+사용자의 Vanilla JavaScript 혹은 React 프로젝트에 Bugcide를 적용하려면 다음과 같은 과정이 필요합니다.
+1. 위에서 실행한 Client 사이트 로그인
+2. 새 프로젝트를 생성하여 프로젝트 토큰 발급
+3. 아래 가이드를 참고하여 Bugcide 설치 및 적용
 
-### `yarn eject`
+#### For React.js
+1. [`bugcide`](https://www.npmjs.com/package/bugcide), [`bugcide-webpack-plugin`](https://www.npmjs.com/package/bugcide-webpack-plugin) 설치
+```
+npm install bugcide bugcide-webpack-plugin --save-dev
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+2. index.js
+```javascript
+import React from 'react';
+import { render } from 'react-dom';
+import App from './src/App';
+import Bugcide from 'bugcide';
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+new Bugcide().init({ projectToken: <your-project-token> });
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+render(<App />, document.getElementById('root'));
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+3. webpack.config.js
+Create React App으로 생성하여 eject한 리액트 앱은 정식으로 지원하지 않기 때문에 정상적으로 작동하지 않을 수 있습니다.
+```javascript
+const bugcidePlugin = require('bugcide-webpack-plugin');
 
-## Learn More
+module.exports = {
+  ...
+  plugins: [
+    ...
+    new bugcidePlugin({
+      projectToken: <your-project-token>
+    })
+  ]
+};
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Skills
+### Client
+- ES2015+
+- React
+- Redux
+- React Router
+- Firebase Authentication
+- D3.js for Visualization
+- Sass
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Server
+- ES2015+
+- Node.js
+- Express
+- JSON Web Token Authentication
+- Mongo DB, Atlas
+- Mongoose
 
-### Code Splitting
+### Npm Module & Webpack Plugin
+- ES2015+
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Test
+### Client
+- Jest, Enzyme for Component Unit test
+- End To End(E2E) Test with Cypress
+![E2E Test](./cypress/screenshots/e2e_test.gif)
 
-### Analyzing the Bundle Size
+### Npm Module & Webpack Plugin
+- Mocha, Chai, Sinon for Unit test
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## Version Control
+- Git, GitHub
+- Trello를 이용한 Task 일정 관리
 
-### Making a Progressive Web App
+## Deployment
+### Client
+- Netlify
+- Custom Domain
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+### Server
+- Amazon Web Services(AWS) Elastic Beanstalk
+- Circle CI를 이용한 빌드 자동화
+- Custom Domain
 
-### Advanced Configuration
+### Npm Module & Webpack Plugin
+- Npm
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## Challenges
+- 처음에는 웹 브라우저에서 발생하는 에러만 감지하면 React 프로젝트에서 발생하는 모든 에러를 추적할 수 있으리라 생각했습니다. 그러나 React 환경에서는 대부분의 Syntax 에러가 Webpack Compile 단계에서 발생하여 에러가 감지되지 않는 문제점이 있었습니다. Compile 단계의 에러를 감지하기 위해 여러 방법을 모색하다가 Webpack Plugin을 만들어 해결하였습니다.
+- 에러 상황을 시각화하기 위해 Chart.js 라이브러리를 사용하려고 했으나 좀 더 화려한 애니메이션 효과를 넣기 위해 D3.js를 사용하여 시각화하였습니다. 사용하는 방법이 까다로워 애니메이션 효과를 넣는 것에 어려움이 있었으나 좀 더 시각적으로 보기 좋은 차트를 그릴 수 있었습니다.
+- 여러 개의 에러가 동시다발적으로 발생하는 경우를 대비하여 에러가 발생할 때마다 서버에 요청 보내는 것을 개선하기 위해 고민하였습니다. 에러 발생 시 2초 동안 추가로 발생하는 에러를 배열에 저장하였다가 한꺼번에 서버로 전송하는 방향으로 리팩토링하였습니다. 또한 한 배열에 동일한 에러 객체가 연속적으로 저장된 경우에는 하나의 에러 객체로 압축하여 서버에 전송하는 데이터의 양을 절감하였습니다. 결과적으로 이전보다 서버 Api 호출 횟수와 서버로 전송되는 데이터의 양을 약 2배 정도 절감하였습니다.
 
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Things to do
+- Node.js 환경에서의 서버 에러 트래킹 기능
+- 일자별 에러 발생량 차트 추가
+- 에러 즐겨찾기 기능
+- 에러별 사용자 메모 기능
+- 프로젝트 및 에러 검색 기능
+- Server Api Unit Test
