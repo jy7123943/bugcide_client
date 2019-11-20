@@ -17,7 +17,9 @@ const Manual = (props) => {
       <section className="code-area">
         <h4 className="code-title">For Vanilla Javascript</h4>
         <p className="code-desc ko">
-          바닐라 자바스크립트 프로젝트를 위해 bugcide.vanilla.js가 제공됩니다. GitHub에서 가장 최신 버전의 bugcide.vanilla.js를 다운받을 수 있습니다. 또한 jsDelivr CDN으로 간단히 참조할 수 있습니다.
+          바닐라 자바스크립트 프로젝트를 위해 bugcide.vanilla.js가 제공됩니다.<br />
+          GitHub에서 가장 최신 버전의 bugcide.vanilla.js를 다운받을 수 있습니다.<br />
+          또한 jsDelivr CDN으로 간단히 참조할 수 있습니다.
         </p>
         <p className="code-desc">
           You need to include bugcide.vanilla.js first.<br />
